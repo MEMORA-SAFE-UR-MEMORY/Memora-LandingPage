@@ -1,4 +1,10 @@
 // fonts/font.ts
+import {
+  Gravitas_One,
+  Kumbh_Sans,
+  Poiret_One,
+  Raleway_Dots,
+} from "next/font/google";
 import localFont from "next/font/local";
 
 export const poppins = localFont({
@@ -39,5 +45,33 @@ export const poppins = localFont({
     { path: "./FZ Poppins-BlackItalic.ttf", weight: "900", style: "italic" },
   ],
   variable: "--font-poppins",
+  display: "swap",
+});
+
+export const gravitasOne = Gravitas_One({
+  variable: "--font-gravitas-one",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
+export const kumbhSans = Kumbh_Sans({
+  variable: "--font-kumbh-sans",
+  subsets: ["latin"],
+  weight: ["300"],
+  display: "swap",
+});
+
+export const raleway = Raleway_Dots({
+  variable: "--font-raleway-dots",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
+export const poiretOne = Poiret_One({
+  variable: "--font-poiret-one",
+  subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
 });
