@@ -1,246 +1,184 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-mono: var(--font-geist-mono);
-  /* DÙNG POPPINS LÀM SANS MẶC ĐỊNH */
-  --font-sans: var(--font-poppins), var(--font-google-poppins), sans-serif;
-  /* MÀU SIDEBAR */
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  /* MÀU PRIMARY & SECONDARY */
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  /* MÀU SEMANTIC (SUCCESS/INFO/WARN/ERROR) */
-  --color-success: var(--success);
-  --color-success-foreground: var(--success-foreground);
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
-  --color-info: var(--info);
-  --color-info-foreground: var(--info-foreground);
-  --color-error: var(--error);
-  --color-error-foreground: var(--error-foreground);
-  /* MÀU TERTIARY (màu phụ) */
-  --color-tertiary-1: var(--tertiary-1);
-  --color-tertiary-2: var(--tertiary-2);
-  --color-tertiary-3: var(--tertiary-3);
-
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  /* MÀU CARD */
-  --color-primary-card: var(--primary-card);
-  --color-primary-card-foreground: var(--primary-card-foreground);
-  --color-secondary-card: var(--secondary-card);
-  --color-secondary-card-foreground: var(--secondary-card-foreground);
-  /* SIZE CARD */
-  --radius-sm: calc(var(--radius) - 4px); /* 4px */
-  --radius-md: calc(var(--radius) - 2px); /* 6px */
-  --radius-lg: var(--radius); /* 8px */
-  --radius-xl: calc(var(--radius) + 4px); /* 12px - DEFAULT */
-  --radius-2xl: calc(var(--radius) + 16px); /* 24px */
-}
-
-@utility font-poppins-light {
-  font-family: var(--font-poppins);
-  font-weight: 300;
-}
-@utility font-poppins-regular {
-  font-family: var(--font-poppins);
-  font-weight: 400;
-}
-
-@utility font-poppins-medium {
-  font-family: var(--font-poppins);
-  font-weight: 500;
-}
-@utility font-poppins-semibold {
-  font-family: var(--font-poppins);
-  font-weight: 600;
-}
-
-:root {
-  --radius: 0.5rem;
-  --background: linear-gradient(to bottom, #fbcfe8, #ffffff, #fef9c3);
-  /* --background: #fbcfe8; */
-  --foreground: oklch(0.145 0 0);
-  --primary-card: #f6339a;
-  --primary-card-foreground: oklch(0.985 0 0);
-  --secondary-card: #fac547;
-  --secondary-card-foreground: oklch(0.205 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #f6339a;
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: #fac547;
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(62.847% 0.00237 15.561);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --success: oklch(0.7 0.2 145);
-  --success-foreground: oklch(0.985 0 0);
-  --warning: oklch(0.85 0.2 80);
-  --warning-foreground: oklch(0.205 0 0);
-  --info: oklch(0.75 0.15 230);
-  --info-foreground: oklch(0.985 0 0);
-  --error: oklch(0.577 0.245 27.325);
-  --error-foreground: oklch(0.985 0 0);
-  --tertiary-1: #8fb3f7;
-  --tertiary-2: #d291bc;
-  --tertiary-3: #a0df6d;
-  --border: #f6339a;
-  --input: oklch(4.22% 0.01732 29.223);
-  --ring: #f9f4f1;
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
   }
-  body {
-    @apply bg-background text-foreground;
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
-@layer components {
-  .btn-primary {
-    @apply flex items-center justify-center w-fit
-           px-4 py-3
-           font-poppins-regular text-[12px] sm:text-[14px] md:text-[15px] 2xl:text-[16px]
-           rounded-lg
-           cursor-pointer
-           bg-primary text-primary-foreground       
-           transition-colors duration-200;
-  }
+.animate-gradient {
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
 
-  .btn-primary:hover {
-    @apply bg-primary/90;
+/* CHỮ MEMORA LẤY HIỆU ỨNG SÁNG LÊN */
+@keyframes shine {
+  0% {
+    background-position: -200% center;
   }
-
-  .btn-primary:disabled {
-    @apply opacity-50 cursor-not-allowed;
-  }
-
-  .btn-secondary {
-    @apply flex items-center justify-center w-fit
-           px-4 py-3
-           font-poppins-regular text-[12px] sm:text-[14px] md:text-[15px] 2xl:text-[16px]
-           rounded-lg
-           cursor-pointer
-           bg-secondary text-secondary-foreground       
-           transition-colors duration-200;
-  }
-
-  .btn-secondary:hover {
-    @apply bg-secondary/50;
-  }
-
-  .btn-secondary:disabled {
-    @apply opacity-50 cursor-not-allowed;
-  }
-
-  .btn-default {
-    @apply flex items-center justify-center w-fit
-           px-4 py-3
-           font-poppins-regular text-[12px] sm:text-[14px] md:text-[15px] 2xl:text-[16px]
-           rounded-lg
-           bg-white text-primary   
-           border border-border
-           cursor-pointer
-           transition-colors duration-200;
-  }
-
-  .btn-default:disabled {
-    @apply opacity-50 cursor-not-allowed;
+  100% {
+    background-position: 200% center;
   }
 }
 
-.animate-blink {
-  animation: blink 1s steps(2, start) infinite;
+.text-bling {
+  background: linear-gradient(
+    120deg,
+    #ffffff 20%,
+    #d4bfff 40%,
+    #ffb6ec 60%,
+    #ffffff 80%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shine 4s linear infinite;
 }
-@keyframes blink {
-  to {
-    visibility: hidden;
+
+/* ===== Char drop animation ===== */
+@keyframes charDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+.char-drop {
+  display: inline-block;
+  opacity: 0;
+  animation: charDrop var(--dur, 1.4s) cubic-bezier(0, 0, 0.2, 1) both;
+  animation-delay: var(--delay, 0s);
+  will-change: transform, opacity, filter;
+}
+@media (prefers-reduced-motion: reduce) {
+  .char-drop {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }
 
-@layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
+/* ===== White Diamond (rõ trên nền sáng) ===== */
+@keyframes diamondTwinkle {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+    filter: blur(4px);
   }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  40% {
+    opacity: 1;
+    transform: translateY(-6px);
+    filter: blur(0);
   }
+  70% {
+    opacity: 0.75;
+    transform: translateY(-3px);
+    filter: blur(0.6px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+    filter: blur(4px);
+  }
+}
+@keyframes diamondFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* vẽ hình thoi + màu trắng bằng biến CSS để dễ chỉnh */
+.diamond {
+  position: absolute;
+  width: var(--size, 14px);
+  height: var(--size, 14px);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); /* hình thoi */
+  background: var(--fill, #ffffff); /* <<< trắng */
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.2)); /* viền hơi xám để nổi trên nền sáng */
+  box-shadow: 0 0 12px var(--glow1, rgba(255, 255, 255, 0.85)),
+    0 0 24px var(--glow2, rgba(255, 255, 255, 0.55)); /* glow trắng */
+  opacity: 0;
+  pointer-events: none;
+  animation: diamondTwinkle var(--dur, 2.6s) ease-in-out var(--delay, 0s)
+      infinite,
+    diamondFloat var(--floatDur, 7s) ease-in-out var(--delay, 0s) infinite;
+  will-change: transform, opacity, filter;
+}
+
+.diamond.sm {
+  --size: 10px;
+  --dur: 2.2s;
+  --floatDur: 5.5s;
+}
+.diamond.md {
+  --size: 14px;
+  --dur: 2.8s;
+  --floatDur: 7s;
+}
+.diamond.lg {
+  --size: 18px;
+  --dur: 3.4s;
+  --floatDur: 8.5s;
+}
+
+/* nếu nền tối thì dùng viền sáng hơn */
+.diamond.on-dark {
+  --border: rgba(255, 255, 255, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diamond {
+    animation: none !important;
+    opacity: 0.9 !important;
+    filter: none !important;
+  }
+}
+
+/* ===== Star spin + pulse ===== */
+@keyframes starSpinPulse {
+  0% {
+    transform: rotate(0deg) scale(var(--s0, 0.88));
+  }
+  50% {
+    transform: rotate(180deg) scale(var(--s1, 1.12));
+  }
+  100% {
+    transform: rotate(360deg) scale(var(--s0, 0.88));
+  }
+}
+
+.star-spin {
+  animation: starSpinPulse var(--dur, 10s) ease-in-out var(--delay, 0s) infinite;
+  transform-origin: 50% 50%;
+  will-change: transform, filter;
+}
+
+.star-glow {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.85))
+    drop-shadow(0 0 14px rgba(255, 255, 255, 0.35));
 }

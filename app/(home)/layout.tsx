@@ -1,17 +1,12 @@
-// app/home/layout.tsx
-import Header from "@/components/shared/Header";
-import Footer from "@/components/shared/Footer";
-
+// app/(home)/layout.tsx
 export default function HomeLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
+    <div className="min-h-dvh flex flex-col">
       <main className="flex-1">{children}</main>
-      <Footer />
     </div>
   );
 }
