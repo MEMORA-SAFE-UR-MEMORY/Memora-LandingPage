@@ -1,4 +1,4 @@
-import { kumbhSans, raleway } from "@/fonts/font";
+import { kumbhSans } from "@/fonts/font";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../public/logo/Logo.svg";

@@ -12,6 +12,14 @@ type OneStarProps = {
   className?: string;
 };
 
+// CSS custom properties used by star animation
+type CSSVars = React.CSSProperties & {
+  ["--dur"]?: string;
+  ["--delay"]?: string;
+  ["--s0"]?: number | string;
+  ["--s1"]?: number | string;
+};
+
 export function Star({
   src,
   size = 40,
@@ -30,11 +38,11 @@ export function Star({
       className={`star-spin star-glow ${className}`}
       style={
         {
-          ["--dur" as any]: `${dur}s`,
-          ["--delay" as any]: `${delay}s`,
-          ["--s0" as any]: scaleFrom,
-          ["--s1" as any]: scaleTo,
-        } as React.CSSProperties
+          "--dur": `${dur}s`,
+          "--delay": `${delay}s`,
+          "--s0": scaleFrom,
+          "--s1": scaleTo,
+        } as CSSVars
       }
       priority={false}
     />

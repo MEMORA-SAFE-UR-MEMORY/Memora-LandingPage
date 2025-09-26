@@ -13,6 +13,14 @@ type StarFieldProps = {
   maxDur?: number; // s
 };
 
+// CSS custom properties for star animation
+type CSSVars = React.CSSProperties & {
+  ["--dur"]?: string;
+  ["--delay"]?: string;
+  ["--s0"]?: number | string;
+  ["--s1"]?: number | string;
+};
+
 function mulberry32(a: number) {
   return function () {
     let t = (a += 0x6d2b79f5);
@@ -32,7 +40,7 @@ export default function StarField({
   minDur = 6,
   maxDur = 14,
 }: StarFieldProps) {
-  const rng = useMemo(
+  const rng: () => number = useMemo(
     () => (seed != null ? mulberry32(seed) : Math.random),
     [seed]
   );
@@ -40,18 +48,14 @@ export default function StarField({
   const stars = useMemo(
     () =>
       Array.from({ length: count }).map((_, i) => {
-        const left = Math.round((rng() as number) * 100); // %
-        const top = Math.round((rng() as number) * 100); // %
-        const size = Math.round(
-          minSize + (maxSize - minSize) * (rng() as number)
-        );
-        const dur = +(minDur + (maxDur - minDur) * (rng() as number)).toFixed(
-          2
-        );
-        const delay = +((rng() as number) * 5).toFixed(2);
-        const angle = Math.round((rng() as number) * 360); // góc ban đầu
-        const s0 = +(0.82 + (rng() as number) * 0.12).toFixed(2);
-        const s1 = +(1.06 + (rng() as number) * 0.18).toFixed(2);
+        const left = Math.round(rng() * 100); // %
+        const top = Math.round(rng() * 100); // %
+        const size = Math.round(minSize + (maxSize - minSize) * rng());
+        const dur = +(minDur + (maxDur - minDur) * rng()).toFixed(2);
+        const delay = +(rng() * 5).toFixed(2);
+        const angle = Math.round(rng() * 360); // góc ban đầu
+        const s0 = +(0.82 + rng() * 0.12).toFixed(2);
+        const s1 = +(1.06 + rng() * 0.18).toFixed(2);
         return { key: `star-${i}`, left, top, size, dur, delay, angle, s0, s1 };
       }),
     [count, rng, minSize, maxSize, minDur, maxDur]
@@ -80,11 +84,11 @@ export default function StarField({
             className="star-spin star-glow"
             style={
               {
-                ["--dur" as any]: `${s.dur}s`,
-                ["--delay" as any]: `${s.delay}s`,
-                ["--s0" as any]: s.s0,
-                ["--s1" as any]: s.s1,
-              } as React.CSSProperties
+                "--dur": `${s.dur}s`,
+                "--delay": `${s.delay}s`,
+                "--s0": s.s0,
+                "--s1": s.s1,
+              } as CSSVars
             }
           />
         </div>
