@@ -51,10 +51,8 @@ export default function CharDrop({
     for (let i = 0; i < text.length; i++) {
       if (text[i] !== " ") indices.push(i);
     }
-    const rng = seed != null ? mulberry32(seed) : Math.random;
-    const seq = random
-      ? shuffle(indices, typeof rng === "function" ? (rng as any) : Math.random)
-      : indices;
+    const rng: () => number = seed != null ? mulberry32(seed) : Math.random;
+    const seq = random ? shuffle(indices, rng) : indices;
 
     // map: index ký tự -> thứ hạng rơi (0,1,2,...)
     const map: Record<number, number> = {};

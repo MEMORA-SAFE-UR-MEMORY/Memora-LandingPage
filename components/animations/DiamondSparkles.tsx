@@ -10,6 +10,17 @@ type DiamondProps = {
   sizes?: ("small" | "md" | "lg")[]; // sizes pool
 };
 
+// Cho phép dùng các CSS custom properties một cách type-safe
+type CSSVars = React.CSSProperties & {
+  ["--delay"]?: string;
+  ["--dur"]?: string;
+  ["--floatDur"]?: string;
+  ["--fill"]?: string;
+  ["--border"]?: string;
+  ["--glow1"]?: string;
+  ["--glow2"]?: string;
+};
+
 function mulberry32(a: number) {
   return function () {
     let t = (a += 0x6d2b79f5);
@@ -31,7 +42,7 @@ export default function DiamondSparkles({
   sizes = ["small", "md", "md", "lg"],
 }: DiamondProps) {
   const arr = useMemo(() => {
-    const rng = seed != null ? mulberry32(seed) : Math.random;
+    const rng: () => number = seed != null ? mulberry32(seed) : Math.random;
     const items = Array.from({ length: count }).map((_, i) => {
       const left = Math.floor(rng() * 100); // percent
       const top = Math.floor(rng() * 80); // percent (not too low)
@@ -58,17 +69,17 @@ export default function DiamondSparkles({
             {
               left: `${d.left}%`,
               top: `${d.top}%`,
-              ["--delay" as any]: `${d.delay}s`,
-              ["--dur" as any]: `${d.dur}s`,
-              ["--floatDur" as any]: `${d.floatDur}s`,
+              "--delay": `${d.delay}s`,
+              "--dur": `${d.dur}s`,
+              "--floatDur": `${d.floatDur}s`,
 
               /* set trắng + viền/glow */
-              ["--fill" as any]: "#ffffff",
-              ["--border" as any]: "rgba(0,0,0,0.20)", // nếu nền sáng
+              "--fill": "#ffffff",
+              "--border": "rgba(0,0,0,0.20)", // nếu nền sáng
               // nếu Hero nền tối, đổi thành: "rgba(255,255,255,0.6)"
-              ["--glow1" as any]: "rgba(255,255,255,0.85)",
-              ["--glow2" as any]: "rgba(255,255,255,0.55)",
-            } as React.CSSProperties
+              "--glow1": "rgba(255,255,255,0.85)",
+              "--glow2": "rgba(255,255,255,0.55)",
+            } as CSSVars
           }
         />
       ))}
