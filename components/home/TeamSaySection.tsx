@@ -142,10 +142,8 @@ export default function TeamSaySection() {
           <p
             className={`${poiretOne.className} text-xl !font-semibold text-gray-800 leading-relaxed`}
           >
-            “I built Memora because ordinary diary apps felt flat—just notes,
-            photos, save, repeat. Memora turns memories into a little world:
-            capture each moment and shape your own exhibition room, a living
-            space for your stories.”
+            “Memora turns memories into a little world: capture each moment and
+            shape your own exhibition room, a living space for your stories.”
           </p>
           {/* mini team chips */}
           <div
