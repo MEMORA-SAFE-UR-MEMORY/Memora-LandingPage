@@ -247,7 +247,9 @@
 }
 
 .container--mobile {
-  min-width: 32rem;
+  /* Avoid forcing overflow on small screens */
+  min-width: 0;
+  width: 100%;
 }
 
 .glass-container {
