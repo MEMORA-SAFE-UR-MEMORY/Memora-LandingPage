@@ -26,9 +26,9 @@ export default function SplitSection() {
             minDur={10}
             maxDur={18}
           />
-          <div className="absolute left-12 -top-6 w-[400px] h-[400px] rounded-full border-[2px] border-white" />
-          <div className="absolute left-20 top-4 w-[400px] h-[400px] rounded-full border-[2px] border-white" />
-          <div className="absolute left-28 top-10 w-[400px] h-[400px] rounded-full border-[2px] border-white" />
+          <div className="absolute top-[-6px] h-[420px] w-[540px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[8deg]" />
+          <div className="absolute top-[26px]  h-[420px] w-[540px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[8deg]" />
+          <div className="absolute top-[58px] h-[420px] w-[540px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[8deg]" />
 
           {/* vệt đỏ loang dưới điện thoại */}
           {/* <span className="absolute left-16 bottom-10 -z-10 w-[400px] h-[220px] rounded-full blur-[110px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_50%_40%,#ffc3b0_0%,#ff5a4e_40%,rgba(255,90,78,0.28)_66%,transparent_80%)]" /> */}

@@ -6,7 +6,7 @@ import AvatarMain from "../../public/images/person/person1.jpg";
 import BadgeAvatar from "../animations/BadgeAvatar";
 import AN from "../../public/images/person/person2.png";
 import TH from "../../public/images/person/person3.png";
-import TM from "../../public/images/person/person4.png";
+import TM from "../../public/images/person/person4.jpg";
 import MA from "../../public/images/person/person6.png";
 import DA from "../../public/images/person/person5.png";
 import { useState } from "react";
@@ -16,7 +16,7 @@ export default function TeamSaySection() {
   const [activeName, setActiveName] = useState<string>("Chau");
 
   return (
-    <section className="relative pt-2 lg:pt-10 pb-10 lg:pb-18 overflow-hidden">
+    <section className="relative pt-2 lg:pt-10 pb-10 lg:pb-18 overflow-hidden overflow-x-hidden">
       {/* soft edge glows */}
 
       <span className="pointer-events-none absolute right-[-80px] top-[200px] -z-10 h-[360px] w-[520px] rounded-full blur-[120px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_60%_60%,#ffe7b0_0%,#ff5a4e_38%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
@@ -142,10 +142,10 @@ export default function TeamSaySection() {
           <p
             className={`${poiretOne.className} text-xl !font-semibold text-gray-800 leading-relaxed`}
           >
-            “We built Memora so the little things never get lost. It’s a calm,
-            private room where photos, notes, and feelings live
-            together—organized by time, people, and places. On special days,
-            Memora brings the right memory back, exactly when it matters.”
+            “I built Memora because ordinary diary apps felt flat—just notes,
+            photos, save, repeat. Memora turns memories into a little world:
+            capture each moment and shape your own exhibition room, a living
+            space for your stories.”
           </p>
           {/* mini team chips */}
           <div
@@ -163,7 +163,7 @@ export default function TeamSaySection() {
           backdrop-blur-md border
           ${
             active
-              ? "chip-active font-semibold" /* active: gradient + chữ đậm */
+              ? "chip-active font-semibold"
               : "bg-white/20 border-white/60 text-gray-800/90 shadow-[0_4px_14px_rgba(0,0,0,0.08)] hover:bg-white/30"
           }
         `}

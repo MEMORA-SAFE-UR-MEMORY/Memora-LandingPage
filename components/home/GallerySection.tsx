@@ -1,16 +1,9 @@
 "use client";
 
-import React, { JSX } from "react";
+import React from "react";
 import { Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { gravitasOne, poiretOne } from "@/fonts/font";
-
-type CSSVars = React.CSSProperties & {
-  ["--duration"]?: string;
-  ["--gap"]?: string;
-  ["--card-w"]?: string;
-  ["--pad"]?: string;
-};
+import { gravitasOne, kumbhSans, poiretOne } from "@/fonts/font";
 
 type Feedback = {
   quote: string;
@@ -19,13 +12,17 @@ type Feedback = {
   rating: number; // 1..5
 };
 
+type CSSVars = React.CSSProperties & {
+  ["--duration"]?: string;
+};
+
 const FEEDBACKS: Feedback[] = [
   {
     quote:
       "Memora helps me relive small moments I would’ve forgotten. The reminders on rainy days are my favorite.",
     name: "An Nguyen",
     title: "Travel creator",
-    rating: 5,
+    rating: 4,
   },
   {
     quote:
@@ -62,20 +59,6 @@ const FEEDBACKS: Feedback[] = [
     title: "Product manager",
     rating: 5,
   },
-  {
-    quote:
-      "It’s my digital memory room: calm, organized, and easy to come back to.",
-    name: "Liam Pham",
-    title: "Engineer",
-    rating: 5,
-  },
-  {
-    quote:
-      "The design makes my old photos feel new again. A gentle way to remember.",
-    name: "Avery Do",
-    title: "Artist",
-    rating: 4,
-  },
 ];
 
 function getInitials(name: string) {
@@ -110,93 +93,122 @@ function RatingStars({ rating = 5 }: { rating?: number }) {
 
 function FeedbackRow({
   items,
-  duration = 30, // s
-  gapPxMin = 12, // px cho clamp
-  gapPxMax = 30, // px cho clamp
-  cardMin = 240, // px tối thiểu của card
-  cardMax = 560, // px tối đa của card
-  cardVW = 42, // % viewport width cho card (ví dụ 42vw)
+  duration = 30,
   reverse = false,
+  cardWidthClass = "w-[88vw] sm:w-[70vw] md:w-[56vw] lg:w-[44vw] xl:w-[38vw]",
+  innerGapClass = "gap-6 sm:gap-8 lg:gap-9",
 }: {
   items: Feedback[];
   duration?: number;
-  gapPxMin?: number;
-  gapPxMax?: number;
-  cardMin?: number;
-  cardMax?: number;
-  cardVW?: number; // dùng % để responsive theo yêu cầu
   reverse?: boolean;
+  cardWidthClass?: string;
+  innerGapClass?: string;
 }) {
-  const doubled = [...items, ...items];
-
   return (
-    <div
-      className="animate-marquee"
-      style={
-        {
-          "--duration": `${duration}s`,
-          // gap responsive: clamp(12px, 3vw, 30px)
-          "--gap": `clamp(${gapPxMin}px, 3vw, ${gapPxMax}px)`,
-          animationDirection: reverse ? "reverse" : undefined,
-        } as CSSVars
-      }
-    >
-      {doubled.map((fb, idx) => (
-        <Card
-          key={idx}
-          // width responsive theo %: clamp(MINpx, cardVW vw, MAXpx)
-          style={
-            {
-              "--card-w": `clamp(${cardMin}px, ${cardVW}vw, ${cardMax}px)`,
-              "--pad": `clamp(16px, 2.4vw, 24px)`,
-            } as CSSVars
-          }
-          className="group flex-shrink-0 w-[var(--card-w)] bg-[#0d0d0d] border-transparent rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-        >
-          <CardContent className="px-[var(--pad)] py-[var(--pad)]">
-            {/* top: rating + quote icon */}
-            <div className="flex items-center justify-between mb-2.5">
-              <RatingStars rating={fb.rating} />
-              <Quote className="w-5 h-5 text-white/40" />
-            </div>
-
-            {/* quote (font-size responsive) */}
-            <p className="text-white/90 text-[clamp(1rem,1.2vw,1.125rem)] leading-[clamp(1.6rem,2vw,1.9rem)]">
-              “{fb.quote}”
-            </p>
-
-            {/* user */}
-            <div className="mt-4 flex items-center gap-3">
-              <div className="h-9 w-9 rounded-full bg-white/10 ring-1 ring-white/20 flex items-center justify-center text-white/90 text-xs font-semibold backdrop-blur">
-                {getInitials(fb.name)}
-              </div>
-              <div className="leading-tight">
-                <div className="text-white font-semibold text-[clamp(0.9rem,1vw,1rem)]">
-                  {fb.name}
-                </div>
-                <div className="text-white/50 text-[clamp(0.7rem,0.9vw,0.8rem)]">
-                  {fb.title}
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-
-      {/* CSS marquee fallback */}
-      <style jsx global>{`
-        .animate-marquee {
-          display: flex;
-          gap: var(--gap, 30px);
-          will-change: transform;
-          animation: marquee var(--duration, 30s) linear infinite;
+    <div className="relative overflow-x-hidden overflow-y-visible py-1">
+      <div
+        className="marquee-track flex w-max"
+        style={
+          {
+            "--duration": `${duration}s`,
+            animationDirection: reverse ? "reverse" : undefined,
+          } as CSSVars
         }
-        @keyframes marquee {
+      >
+        {/* SET 1 */}
+        <div className={`flex ${innerGapClass} pr-2 sm:pr-4 lg:pr-5`}>
+          {items.map((fb, idx) => (
+            <Card
+              key={`set1-${idx}`}
+              className={`group flex-none ${cardWidthClass} bg-[#0d0d0d] border-transparent rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow`}
+            >
+              <CardContent className="px-4 sm:px-6">
+                <div className="flex items-center justify-between mb-2.5 sm:mb-3">
+                  <RatingStars rating={fb.rating} />
+                  <Quote className="w-5 h-5 text-black" />
+                </div>
+                <p
+                  className={`${kumbhSans.className} text-black text-base sm:text-lg leading-6 sm:leading-7`}
+                >
+                  “{fb.quote}”
+                </p>
+                <div className="mt-4 flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-full bg-gradient-to-br from-rose-300/90 via-fuchsia-300/85 to-sky-300/90 ring-1 ring-white/30 shadow-md flex items-center justify-center text-white text-[11px] font-semibold backdrop-blur">
+                    {getInitials(fb.name)}
+                  </div>
+                  <div className="leading-tight">
+                    <div
+                      className={`${kumbhSans.className} text-black/90 !font-extrabold text-sm sm:text-base`}
+                    >
+                      {fb.name}
+                    </div>
+                    <div
+                      className={`${kumbhSans.className} text-black/50 text-xs sm:text-sm`}
+                    >
+                      {fb.title}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* SET 2 (duplicate, aria-hidden) */}
+        <div
+          className={`flex ${innerGapClass} pl-4 sm:pl-6 lg:pl-7`}
+          aria-hidden
+        >
+          {items.map((fb, idx) => (
+            <Card
+              key={`set2-${idx}`}
+              className={`group flex-none ${cardWidthClass} bg-[#0d0d0d] border-transparent rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow`}
+            >
+              <CardContent className="px-4 sm:px-6">
+                <div className="flex items-center justify-between mb-2.5 sm:mb-3">
+                  <RatingStars rating={fb.rating} />
+                  <Quote className="w-5 h-5 text-black" />
+                </div>
+                <p
+                  className={`${kumbhSans.className} text-black text-base sm:text-lg leading-6 sm:leading-7`}
+                >
+                  “{fb.quote}”
+                </p>
+                <div className="mt-4 flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-full bg-gradient-to-br from-rose-400/90 via-fuchsia-400/85 to-sky-400/90 ring-1 ring-white/30 shadow-md flex items-center justify-center text-white text-[11px] font-semibold backdrop-blur">
+                    {getInitials(fb.name)}
+                  </div>
+                  <div className="leading-tight">
+                    <div
+                      className={`${kumbhSans.className} text-black/90 !font-extrabold text-sm sm:text-base`}
+                    >
+                      {fb.name}
+                    </div>
+                    <div
+                      className={`${kumbhSans.className} text-black/50 text-xs sm:text-sm`}
+                    >
+                      {fb.title}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* CSS: track dịch -50% của chính nó (2 set cùng width) → seamless */}
+      <style jsx global>{`
+        .marquee-track {
+          will-change: transform;
+          animation: marquee-x var(--duration, 30s) linear infinite;
+        }
+        @keyframes marquee-x {
           0% {
-            transform: translateX(0);
+            transform: translate3d(0, 0, 0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translate3d(-50%, 0, 0);
           }
         }
       `}</style>
@@ -204,40 +216,66 @@ function FeedbackRow({
   );
 }
 
-export const GallerySection = (): JSX.Element => {
+export const GallerySection = (): React.JSX.Element => {
   return (
-    <section className="relative flex flex-col pt-6 lg:pt-10 pb-12 lg:pb-20 items-center gap-[clamp(48px,8vw,112px)] w-full">
+    <section className="flex flex-col pt-4 lg:pt-12 pb-10 lg:pb-18 items-center w-full gap-2 sm:gap-6 lg:gap-14">
       {/* Heading */}
-      <span
-        className="
-          pointer-events-none absolute -z-10 left-1/2 -translate-x-1/2 -top-4
-          h-[150px] w-[900px] rounded-full blur-[100px] opacity-95 mix-blend-multiply
-          bg-[radial-gradient(60%_60%_at_50%_40%,#ffb199_0%,#ff5a4e_38%,rgba(255,90,78,0.35)_60%,transparent_78%)]
-        "
-      />
-      <div className="flex flex-col w-full max-w-[min(92vw,1100px)] items-center gap-[clamp(12px,2.4vw,28px)]">
-        <h2
-          className={`${gravitasOne.className} text-center font-medium text-white text-[clamp(28px,5vw,48px)] leading-[clamp(36px,6vw,56px)] tracking-[-0.02em]`}
+      <div className="flex flex-col w-full max-w-[92vw] lg:max-w-[1100px] items-center gap-3 sm:gap-5">
+        <p
+          className={`${kumbhSans.className} uppercase tracking-[0.25em] text-xl text-rose-500 !font-bold`}
+        >
+          Testimonial
+        </p>
+
+        <h1
+          className={`${gravitasOne.className}
+        relative z-10 tracking-normal
+        text-[60px] font-bold text-white
+        drop-shadow-[0_8px_24px_rgba(255,255,255,0.28)]
+        text-center
+      `}
         >
           What our users say
-        </h2>
-
-        <p
-          className={`${poiretOne.className} text-center text-white/60 text-[clamp(14px,1.1vw,16px)] leading-[clamp(22px,2vw,28px)] max-w-[75ch]`}
-        >
-          Real stories from people who made a room for their memories. Private,
-          gentle, and always there when it matters.
-        </p>
+          {/* Halo 1 */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -z-10 -inset-x-16 -inset-y-10
+                   rounded-[120px] blur-[70px] opacity-85
+                   bg-[radial-gradient(65%_65%_at_50%_45%,#ffd6f6_0%,#f0abfc_34%,#c4b5fd_58%,#93c5fd_78%,transparent_86%)]"
+          />
+          {/* Halo 2 */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -z-10 -inset-x-24 -inset-y-16
+                   blur-[110px] opacity-75 mix-blend-screen
+                   bg-[conic-gradient(from_200deg_at_50%_50%,#f0abfc_0deg,#93c5fd_120deg,#fbcfe8_240deg,#f0abfc_360deg)]"
+          />
+          <p
+            className={`${poiretOne.className} text-center text-black/70 mt-2 sm:mt-3
+                  !text-xl sm:text-base !font-bold leading-4 sm:leading-5 max-w-[75ch]`}
+          >
+            Real stories from people who made a room for their memories.
+            Private, gentle, and always there when it matters.
+          </p>
+        </h1>
       </div>
 
       {/* Rows */}
-      <div className="w-full overflow-hidden">
-        <div className="flex flex-col gap-[clamp(16px,2.8vw,28px)]">
-          {/* Hàng 1: card ~42vw */}
-          <FeedbackRow items={FEEDBACKS} duration={30} cardVW={42} />
-
-          {/* Hàng 2 đảo chiều: card ~38vw */}
-          <FeedbackRow items={FEEDBACKS} duration={40} cardVW={38} reverse />
+      <div className="w-full overflow-x-hidden overflow-y-visible py-2 sm:py-4">
+        <div className="flex flex-col gap-4 sm:gap-6 lg:gap-8">
+          {/* Row 1 */}
+          <FeedbackRow
+            items={FEEDBACKS}
+            duration={30}
+            cardWidthClass="w-[88vw] sm:w-[70vw] md:w-[56vw] lg:w-[44vw] xl:w-[38vw]"
+          />
+          {/* Row 2 */}
+          <FeedbackRow
+            items={FEEDBACKS}
+            duration={40}
+            reverse
+            cardWidthClass="w-[88vw] sm:w-[68vw] md:w-[54vw] lg:w-[42vw] xl:w-[36vw]"
+          />
         </div>
       </div>
     </section>

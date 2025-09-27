@@ -8,12 +8,12 @@ import StarField from "../animations/StarField";
 
 export default function FeatureSection() {
   return (
-    <section className="relative pt-6 lg:pt-14 pb-10 lg:pb-18 overflow-hidden">
+    <section className="relative pt-6 lg:pt-14 pb-10 lg:pb-18 overflow-hidden overflow-x-hidden">
       {/* edge glows like the reference */}
       <span className="pointer-events-none absolute left-[-80px] top-70 -z-10 h-[300px] w-[520px] rounded-full blur-[120px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_40%_40%,#ffc3b0_0%,#ff5a4e_40%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
       {/* <span className="pointer-events-none absolute right-[-80px] bottom-[-40px] -z-10 h-[300px] w-[520px] rounded-full blur-[120px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_60%_60%,#ffe7b0_0%,#ff5a4e_38%,rgba(255,90,78,0.28)_66%,transparent_80%)]" /> */}
 
-      <div className="mx-auto w-[min(92vw,1100px)] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="mx-auto w-[min(92vw,1120px)] grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* RIGHT: copy + list */}
         <div>
           <p
@@ -149,9 +149,9 @@ function FeatureRow({
         {icon}
       </div>
       <div>
-        <h4 className="font-extrabold text-gray-900">{title}</h4>
+        <h4 className="!font-black text-black text-[20px]">{title}</h4>
         <p
-          className={`${kumbhSans.className} text-gray-600 mt-1 text-[15px] leading-relaxed`}
+          className={`${kumbhSans.className} text-gray-700 mt-1 text-[18px] leading-relaxed`}
         >
           {desc}
         </p>

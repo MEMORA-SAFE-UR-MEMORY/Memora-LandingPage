@@ -6,10 +6,10 @@ import StarSvg from "@/public/icons/star.svg";
 
 export default function AdvantagesSection() {
   return (
-    <section className="relative pt-6 lg:pt-14 pb-12 lg:pb-20 overflow-hidden">
+    <section className="relative pt-10 lg:pt-18 pb-12 lg:pb-20 overflow-hidden">
       {/* edge glows */}
-      <span className="pointer-events-none absolute left-[-100px] top-[240px] -z-10 h-[200px] w-[500px] rounded-full blur-[120px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_40%_40%,#ffd4b8_0%,#ff5a4e_40%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
-      <span className="pointer-events-none absolute right-[-60px] top-[280px] -z-10 h-[250px] w-[500px] rounded-full blur-[120px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_60%_60%,#ffe7b0_0%,#ff5a4e_38%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
+      <span className="pointer-events-none absolute left-[-100px] top-[280px] -z-10 h-[200px] w-[500px] rounded-full blur-[120px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_40%_40%,#ffd4b8_0%,#ff5a4e_40%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
+      <span className="pointer-events-none absolute right-[-60px] top-[320px] -z-10 h-[250px] w-[500px] rounded-full blur-[120px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_60%_60%,#ffe7b0_0%,#ff5a4e_38%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
 
       <div className="mx-auto w-[min(92vw,1100px)] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* LEFT: phone + rings + glow + floating card */}
