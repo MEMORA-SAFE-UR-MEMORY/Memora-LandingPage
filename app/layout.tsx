@@ -3,11 +3,11 @@ import "./globals.css";
 import { Providers } from "./_providers";
 import Header from "@/components/shared/Header";
 
-// CHỈ dùng các font export từ /fonts/font
 import {
   bodon,
   gravitasOne,
   kumbhSans,
+  montserrat,
   poiretOne,
   poppins,
   raleway,
@@ -41,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${poppins.variable} ${bodon.variable} ${gravitasOne.variable} ${kumbhSans.variable} ${raleway.variable} ${poiretOne.variable} overflow-x-hidden`}
+      className={`${poppins.variable} ${bodon.variable} ${montserrat.variable} ${gravitasOne.variable} ${kumbhSans.variable} ${raleway.variable} ${poiretOne.variable} overflow-x-hidden`}
     >
       {/* flex-col để Footer ôm đáy khi trang ngắn; min-h-dvh ổn định trên mobile */}
       <body className="antialiased relative min-h-screen flex flex-col overflow-x-hidden max-w-[100vw] w-screen">

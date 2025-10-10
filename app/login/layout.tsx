@@ -12,7 +12,7 @@ export default function LoginLayout({
 }) {
   return (
     <div className="min-h-dvh flex flex-col pt-24 sm:pt-28">
-      <main className="flex-1 flex items-center justify-center px-6 md:px-10 my-4 md:my-8">
+      <main className="flex-1 flex items-center justify-center px-6 md:px-10 my-8 md:my-12">
         <div className="mx-auto w-full max-w-[1100px]">{children}</div>
       </main>
       <Footer />

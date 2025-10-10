@@ -2,6 +2,7 @@
 import {
   Gravitas_One,
   Kumbh_Sans,
+  Montserrat,
   Poiret_One,
   Raleway_Dots,
 } from "next/font/google";
@@ -79,5 +80,13 @@ export const poiretOne = Poiret_One({
   variable: "--font-poiret-one",
   subsets: ["latin"],
   weight: ["400"],
+  display: "swap",
+});
+
+export const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
   display: "swap",
 });

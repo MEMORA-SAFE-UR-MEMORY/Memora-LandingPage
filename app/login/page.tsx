@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 // import Link from "next/link";
-import { kumbhSans } from "@/fonts/font";
+import { kumbhSans, montserrat } from "@/fonts/font";
+import { CircleHelp } from "lucide-react";
 
 export default function LoginPage() {
   const [showPw, setShowPw] = useState(false);
@@ -26,7 +27,9 @@ export default function LoginPage() {
 
         {/* LEFT: Login */}
         <div className="">
-          <h2 className="text-xl font-semibold tracking-wide mb-4">
+          <h2
+            className={`${montserrat.className} text-2xl font-semibold tracking-wide mb-4`}
+          >
             ĐĂNG NHẬP
           </h2>
 
@@ -42,17 +45,17 @@ export default function LoginPage() {
               <div className="relative">
                 <InputFloat
                   id="password"
-                  label="Password"
+                  label="Mật khẩu"
                   type={showPw ? "text" : "password"}
                   autoComplete="current-password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPw((v) => !v)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-sm px-2 text-gray-600 hover:text-black"
+                  className={`${montserrat.className} absolute right-2 top-1/2 -translate-y-1/2 text-sm px-2 text-gray-600 hover:text-black`}
                   aria-label={showPw ? "Hide password" : "Show password"}
                 >
-                  {showPw ? "Hide" : "Show"}
+                  {showPw ? "Ẩn" : "Hiện"}
                 </button>
               </div>
               {/* <div className="flex items-center justify-between text-sm">
@@ -67,9 +70,9 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="w-full bg-[#FE93C8] text-white py-2.5 rounded-md hover:bg-[#f77cb9] transition"
+              className={`${montserrat.className} w-full bg-[#FE93C8] text-white py-2.5 rounded-md hover:bg-[#f77cb9] transition`}
             >
-              Sign-in and Continue
+              ĐĂNG NHẬP VÀ TIẾP TỤC
             </button>
 
             {/* <button
@@ -90,20 +93,32 @@ export default function LoginPage() {
         </div>
 
         {/* RIGHT: Check Order Status */}
-        <div className={`${kumbhSans.className}`}>
-          <h2 className="text-xl font-semibold tracking-wide mb-4">
-            CHECK ORDER STATUS
+        <div>
+          <h2
+            className={`${montserrat.className} text-2xl font-semibold tracking-wide mb-4`}
+          >
+            KIỂM TRA TÌNH TRẠNG ĐƠN HÀNG
           </h2>
 
           <form onSubmit={onCheckOrder} className="space-y-4">
-            <InputFloat id="orderNumber" label="Order number" type="text" />
-            <InputFloat id="orderEmail" label="Order Email" type="email" />
+            <InputFloat id="orderNumber" label="Mã đơn hàng" type="text" />
+            <InputFloat
+              id="orderEmail"
+              label="Email đơn hàng"
+              type="email"
+              endSlot={
+                <InfoTooltip
+                  message="Vui lòng điền mã đơn hàng theo như mẫu.
+                 Ví dụ: PNDES00012345"
+                />
+              }
+            />
 
             <button
               type="submit"
-              className="w-full bg-white border border-gray-300 py-2.5 rounded-md hover:bg-transparent hover:border-gray-50 transition"
+              className={`${montserrat.className} w-full bg-white border border-gray-300 py-2.5 rounded-md hover:bg-transparent hover:border-gray-50 transition`}
             >
-              Check Status
+              KIỂM TRA
             </button>
           </form>
         </div>
@@ -118,11 +133,13 @@ function InputFloat({
   label,
   type = "text",
   autoComplete,
+  endSlot,
 }: {
   id: string;
   label: string;
   type?: string;
   autoComplete?: string;
+  endSlot?: React.ReactNode;
 }) {
   return (
     <div className="relative">
@@ -132,20 +149,58 @@ function InputFloat({
         type={type}
         placeholder=" "
         autoComplete={autoComplete}
-        className="peer block w-full rounded-none bg-transparent outline-none
+        className={`${montserrat.className} peer block w-full rounded-none bg-transparent outline-none
                    border-0 border-b border-gray-300
-                   pr-12 pt-5 pb-2
-                   focus:ring-0 focus:border-b-black"
+                   pr-12 pt-8 pb-2 placeholder-transparent
+                   focus:ring-0 focus:border-b-black`}
       />
       <label
         htmlFor={id}
-        className="pointer-events-none absolute left-0 text-black transition-all duration-150 ease-out
+        className={`${montserrat.className} pointer-events-none absolute left-0 text-black transition-all duration-150 ease-out
                    top-1/2 -translate-y-1/2 text-base
-                   peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-black
-                   peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-base"
+                   peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-bold
+                   peer-[:not(:placeholder-shown)]:top-2
+                   peer-[:not(:placeholder-shown)]:translate-y-0
+                   peer-[:not(:placeholder-shown)]:text-xs`}
       >
         {label}
       </label>
+      {endSlot && (
+        <div className="absolute right-0 top-1/2 -translate-y-1/2">
+          {endSlot}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function InfoTooltip({ message }: { message: string }) {
+  const id = React.useId();
+  return (
+    <div className="group relative">
+      <button
+        aria-describedby={id}
+        type="button"
+        className="p-1.5 rounded-full text-gray-500 hover:text-black focus:outline-none focus:ring-2 focus:ring-black/20"
+      >
+        {/* circle info icon */}
+        <CircleHelp size={20} strokeWidth={1.75} />
+      </button>
+
+      {/* tooltip */}
+      <div
+        role="tooltip"
+        id={id}
+        className={`${montserrat.className} pointer-events-none invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100
+                   transition duration-150 ease-out
+                   absolute -top-3 translate-y-[-100%] -right-4 z-50
+                   w-80 max-w-[min(90vw,22rem)]
+                   rounded-md bg-black text-white text-sm px-4 py-3 shadow-lg whitespace-pre-line`}
+      >
+        {message}
+        {/* arrow */}
+        <span className="absolute top-full right-6 -mt-px h-0 w-0 border-x-8 border-x-transparent border-t-8 border-t-black" />
+      </div>
     </div>
   );
 }

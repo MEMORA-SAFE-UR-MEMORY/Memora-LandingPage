@@ -1,6 +1,34 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@theme inline {
+  --font-sans: var(--font-poppins), var(--font-google-poppins), sans-serif;
+  --font-sans: var(--font-bodon), sans-serif;
+}
+
+@utility font-poppins-light {
+  font-family: var(--font-poppins);
+  font-weight: 300;
+}
+@utility font-poppins-regular {
+  font-family: var(--font-poppins);
+  font-weight: 400;
+}
+
+@utility font-poppins-medium {
+  font-family: var(--font-poppins);
+  font-weight: 500;
+}
+@utility font-poppins-semibold {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+}
+
+@utility font-bodon-bold {
+  font-family: var(--font-bodon);
+  font-weight: 700;
+}
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
