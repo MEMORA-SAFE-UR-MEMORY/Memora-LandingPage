@@ -18,9 +18,9 @@ const HeroSection = () => {
       {/* Content */}
       <div className="max-w-[92vw] sm:max-w-2xl flex flex-col items-center justify-center px-4">
         <h1
-          className={`${gravitasOne.className} font-bold tracking-widest text-bling leading-none`}
+          className={`${gravitasOne.className} font-bold text-bling leading-none tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.24em]`}
         >
-          <span className="block text-[22vw] sm:text-[150px] md:text-[180px]">
+          <span className="block text-[60px] sm:text-[150px] md:text-[180px]">
             MEMORA
           </span>
         </h1>
