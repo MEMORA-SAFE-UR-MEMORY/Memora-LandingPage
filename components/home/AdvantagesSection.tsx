@@ -20,7 +20,7 @@ export default function AdvantagesSection() {
           <div className="absolute right-[-40px] top-[58px] h-[420px] w-[520px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[8deg]" />
 
           {/* warm glow */}
-          <span className="absolute right-24 top-28 -z-10 w-[420px] h-[260px] rounded-full blur-[110px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_50%_40%,#ffd4b8_0%,#ff5a4e_40%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
+          <span className="absolute right-24 top-40 -z-10 w-[420px] h-[260px] rounded-full blur-[110px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_50%_40%,#ffd4b8_0%,#ff5a4e_40%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
           <StarField
             src={StarSvg}
             count={36}
@@ -37,17 +37,17 @@ export default function AdvantagesSection() {
             alt="phone"
             priority
             className="
-    absolute -top-10 drop-shadow-2xl h-auto
+    absolute -top-10 drop-shadow-2xl h-auto left-8
     w-[320px] sm:w-[380px] lg:w-[420px] xl:w-[460px]
     origin-top-right transform-gpu transition-transform
-    scale-[0.7] sm:scale-[0.8] lg:scale-[0.9] xl:scale-[1]
+    scale-[1.15] sm:scale-[1.3] lg:scale-[1.2] xl:scale-[1]
   "
           />
 
           {/* floating payment card */}
           <div
             className="
-    absolute right-5 top-[120px]
+    absolute right-4 top-[120px]
     px-4 py-3 flex items-center gap-3
     rounded-xl
     bg-white/25

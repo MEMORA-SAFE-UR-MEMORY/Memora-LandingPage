@@ -36,7 +36,112 @@ export default function TeamSaySection() {
           </h2>
         </div>
         {/* LEFT — rings + central avatar + small avatars */}
-        <div className="relative h-[540px]">
+        {/* Mobile layout (fit gọn, không tràn) */}
+        <div className="relative h-[420px] sm:hidden">
+          {/* concentric ellipse rings — centered */}
+          <div className="absolute top-10 h-[420px] w-[520px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[-8deg]" />
+          <div className="absolute left-0 top-16 h-[420px] w-[520px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[-8deg] translate-x-6" />
+          <div className="absolute left-6 top-22 h-[420px] w-[520px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[-8deg] translate-x-12" />
+
+          {/* warm glow behind circle — centered */}
+          <span className="absolute left-1/2 -translate-x-1/2 top-24 -z-10 w-[62vw] max-w-[260px] h-[38vw] max-h-[180px] rounded-full blur-[90px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_50%_40%,#ffc3b0_0%,#ff5a4e_40%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
+
+          <StarField
+            src={StarSvg}
+            count={28}
+            seed={42}
+            className="-z-10"
+            minSize={10}
+            maxSize={24}
+            minDur={10}
+            maxDur={18}
+          />
+
+          {/* central avatar — centered */}
+          <BadgeAvatar
+            src={AvatarMain}
+            name="Chau"
+            alt="Chau"
+            size={180}
+            float={false}
+            onSelect={setActiveName}
+            className={`
+              absolute left-1/2 top-[120px] -translate-x-1/2
+              transition ring-1
+              ${
+                activeName === "Chau"
+                  ? "ring-2 shadow-2xl"
+                  : "ring-black/10 shadow-xl"
+              }
+              hover:scale-[1.01]
+            `}
+          />
+
+          {/* quote badge */}
+          <div className="absolute right-18 top-[210px] h-12 w-12 rounded-full bg-rose-500 text-white shadow-lg flex items-center justify-center">
+            <QuoteIcon />
+          </div>
+
+          {/* small avatars — kept inside bounds */}
+          <BadgeAvatar
+            src={MA}
+            name="Mai Anh"
+            alt="Mai Anh"
+            className="absolute left-4 top-16"
+            size={68}
+            float
+            dur={7.5}
+            delay={0.2}
+            onSelect={setActiveName}
+          />
+          <BadgeAvatar
+            src={TM}
+            name="Mai"
+            alt="Mai"
+            className="absolute right-6 top-12"
+            float
+            size={72}
+            dur={8.5}
+            delay={0.8}
+            onSelect={setActiveName}
+          />
+          <BadgeAvatar
+            src={TH}
+            name="Thao"
+            alt="Thao"
+            className="absolute left-3 bottom-10"
+            float
+            size={82}
+            dur={7.9}
+            delay={0.5}
+            onSelect={setActiveName}
+          />
+          <BadgeAvatar
+            src={AN}
+            name="An"
+            alt="An"
+            className="absolute right-20 bottom-1"
+            float
+            size={74}
+            dur={9.2}
+            delay={0.3}
+            onSelect={setActiveName}
+          />
+          <BadgeAvatar
+            src={DA}
+            name="Duy Anh"
+            alt="Duy Anh"
+            className="absolute right-2 top-[260px]"
+            float
+            size={70}
+            dur={9.2}
+            delay={0.3}
+            onSelect={setActiveName}
+          />
+        </div>
+
+        {/* Desktop/Tablet layout (giữ nguyên) */}
+        <div className="relative h-[540px] hidden sm:block">
           {/* concentric ellipse rings */}
           <div className="absolute top-10 h-[420px] w-[520px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[-8deg]" />
           <div className="absolute left-6 top-16 h-[420px] w-[520px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[-8deg] translate-x-6" />
@@ -63,11 +168,11 @@ export default function TeamSaySection() {
             float={false} // avatar chính không cần lủng lẳng
             onSelect={setActiveName}
             className={`
-    absolute left-25 top-28
-    transition ring-1
-    ${activeName === "Chau" ? "ring-2 shadow-2xl" : "ring-black/10 shadow-xl"}
-    hover:scale-[1.01]
-  `}
+     absolute left-25 top-28
+     transition ring-1
+     ${activeName === "Chau" ? "ring-2 shadow-2xl" : "ring-black/10 shadow-xl"}
+     hover:scale-[1.01]
+   `}
           />
 
           {/* quote badge */}

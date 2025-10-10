@@ -22,7 +22,7 @@ export default function FeatureSection() {
             Features
           </p>
           <h2
-            className={`${gravitasOne.className} text-5xl sm:text-6xl leading-tight text-white mb-6`}
+            className={`${gravitasOne.className} text-4xl sm:text-5xl leading-tight text-white mb-6`}
           >
             DISCOVERY MODE
           </h2>
@@ -71,9 +71,9 @@ export default function FeatureSection() {
             priority
             className="
     absolute top-[25%] drop-shadow-2xl h-auto
-    w-[320px] sm:w-[380px] lg:w-[420px] xl:w-[460px]
+    w-[360px] sm:w-[380px] lg:w-[420px] xl:w-[460px]
     origin-top-left transform-gpu transition-transform
-    scale-[1.2] sm:scale-[1.3] lg:scale-[1.4] xl:scale-[1.5]
+    scale-[1.25] sm:scale-[1.3] lg:scale-[1.4] xl:scale-[1.5]
   "
           />
         </div>

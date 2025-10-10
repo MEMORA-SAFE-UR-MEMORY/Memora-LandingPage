@@ -53,10 +53,10 @@ export default function CtaDownload() {
                   alt="phone"
                   priority
                   className="
-                    absolute z-10 top-[75%] rotate-[-6deg]
+                    absolute z-10 top-[70%] rotate-[-6deg]
                     w-[180px]
                     transform-gpu origin-bottom-left
-                    scale-[2.8] sm:scale-[2.9] lg:scale-[3]
+                    scale-[2.05] sm:scale-[2.7] lg:scale-[3]
                     drop-shadow-2xl opacity-90"
                 />
               </div>

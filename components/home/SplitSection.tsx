@@ -10,7 +10,7 @@ import StarField from "../animations/StarField";
 export default function SplitSection() {
   return (
     <section className="relative pb-10 lg:pb-14">
-      <span className="pointer-events-none absolute -z-10 left-1/2 top-4 -translate-x-1/2 w-[900px] h-[380px] rounded-full blur-[120px] opacity-90 mix-blend-multiply  bg-[radial-gradient(60%_60%_at_50%_40%,#ffb199_0%,#ff5a4e_38%,rgba(255,90,78,0.35)_60%,transparent_78%)]" />
+      <span className="pointer-events-none absolute -z-10 left-1/2 top-4 -translate-x-1/2 w-[900px] h-[380px] rounded-full blur-[120px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_50%_40%,#ffb199_0%,#ff5a4e_38%,rgba(255,90,78,0.35)_60%,transparent_78%)]" />
 
       <div className="mx-auto w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* LEFT */}
@@ -40,15 +40,15 @@ export default function SplitSection() {
             height={1040}
             priority
             className="absolute left-2 top-0 rotate-6 drop-shadow-2xl
-                       w-[360px] sm:w-[440px] lg:w-[520px] xl:w-[560px] 2xl:w-[620px] h-auto
-                       scale-[1.2] lg:scale-[1.4] 
+                       w-[400px] sm:w-[440px] lg:w-[520px] xl:w-[560px] 2xl:w-[620px] h-auto
+                       scale-[1.3] lg:scale-[1.4] 
                        transition-all"
           />
         </div>
         {/* RIGHT */}
-        <div className="relative">
+        <div className="relative mx-4">
           <h1
-            className={`${gravitasOne.className} relative z-10 font-extrabold text-[42px] sm:text-[56px] leading-[1.05] tracking-tight text-white`}
+            className={`${gravitasOne.className} relative z-10 font-extrabold text-[52px] sm:text-[56px] leading-[1.05] tracking-tight text-white`}
           >
             Your{" "}
             <span className="relative inline-block">
@@ -58,8 +58,7 @@ export default function SplitSection() {
                 aria-hidden
                 className="pointer-events-none absolute -z-10 left-2/3 -translate-x-1/2 -top-6
              h-[180px] w-[420px] rounded-full blur-[64px] opacity-100 mix-blend-screen
-          bg-[radial-gradient(60%_60%_at_50%_40%,#ffb199_0%,#ff5a4e_38%,rgba(255,90,78,0.35)_60%,transparent_78%)]
-"
+          bg-[radial-gradient(60%_60%_at_50%_40%,#ffb199_0%,#ff5a4e_38%,rgba(255,90,78,0.35)_60%,transparent_78%)]"
               />
             </span>
           </h1>

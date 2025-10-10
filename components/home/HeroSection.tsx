@@ -10,7 +10,7 @@ import DiamondSparkles from "../animations/DiamondSparkles";
 
 const HeroSection = () => {
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-screen text-center overflow-hidden pt-24 sm:pt-28">
+    <section className="relative flex flex-col items-center justify-center min-h-screen text-center overflow-hidden pt-2 sm:pt-4">
       <Header />
 
       <DiamondSparkles className="-z-10" count={16} />

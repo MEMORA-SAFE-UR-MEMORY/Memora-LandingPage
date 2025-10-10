@@ -6,7 +6,7 @@ import { gravitasOne, kumbhSans } from "@/fonts/font";
 export default function Footer() {
   return (
     <footer className="mt-auto w-full py-12 ">
-      <div className="mx-auto container container--mobile w-[min(98vw,1240px)] ">
+      <div className="mx-auto w-full max-w-[1240px] px-4 sm:px-6 lg:px-8">
         {/* Card (dark like screenshot) */}
         <div className="relative glass-container glass-container--rounded glass-container--medium rounded-[28px] text-white/90 shadow-[0_24px_80px_rgba(0,0,0,0.28)] ring-1 ring-white/10">
           {/* Background glass layers */}

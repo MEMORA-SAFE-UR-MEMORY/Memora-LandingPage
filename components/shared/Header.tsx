@@ -9,7 +9,7 @@ import Logo from "../../public/logo/Logo.svg";
 export default function Header() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="w-full absolute top-0 left-0">
+    <header className="w-full absolute top-0 left-0 z-50">
       <div className="mx-auto w-[min(96vw,1200px)] flex items-center justify-between py-4 sm:py-5 px-4 sm:px-6">
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -72,10 +72,10 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
+      {/* Mobile dropdown (no blur, no backdrop) */}
       {open && (
-        <div className="md:hidden px-4 pb-4">
-          <div className="mx-auto w-[min(96vw,1200px)] rounded-xl border border-black/10 bg-white/70 backdrop-blur-md shadow-md">
+        <div className="md:hidden absolute inset-x-0 top-full px-4 sm:px-6 pb-4">
+          <div className="mx-auto w-full max-w-[680px] rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-2 sm:p-3">
             <div className={`flex flex-col ${kumbhSans.className}`}>
               <Link href="#" className="px-4 py-3 text-black hover:bg-black/5">
                 Home
