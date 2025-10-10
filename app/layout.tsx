@@ -14,9 +14,25 @@ import {
 } from "@/fonts/font";
 
 export const metadata: Metadata = {
-  title: "Memora",
+  metadataBase: new URL("https://memora-official.com"),
+  title: {
+    default: "Memora",
+    template: "%s | Memora",
+  },
   description:
     "Memora – Ứng dụng lưu trữ ký ức số, giúp bạn giữ gìn và sắp xếp những khoảnh khắc đáng nhớ trong không gian phòng ký ức riêng tư, an toàn và đầy cảm xúc.",
+  alternates: {
+    canonical: "https://memora-official.com",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://memora-official.com",
+    title: "Memora",
+    description:
+      "Memora – Ứng dụng lưu trữ ký ức số, giúp bạn giữ gìn và sắp xếp những khoảnh khắc đáng nhớ trong không gian phòng ký ức riêng tư, an toàn và đầy cảm xúc.",
+    siteName: "Memora",
+    images: ["/favicon.ico"],
+  },
 };
 
 export default function RootLayout({

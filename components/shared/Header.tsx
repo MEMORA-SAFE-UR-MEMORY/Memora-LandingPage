@@ -20,27 +20,28 @@ export default function Header() {
         <nav
           className={`hidden md:flex items-center gap-10 text-base ${kumbhSans.className}`}
         >
-          <Link href="#" className="text-black hover:opacity-80">
+          <Link href="/" className="text-black hover:opacity-80">
             Home
           </Link>
-          <Link href="#" className="text-black hover:opacity-80">
+          <Link href="/#about" className="text-black hover:opacity-80">
             About Us
           </Link>
-          <Link href="#" className="text-black hover:opacity-80">
+          <Link href="/#pricing" className="text-black hover:opacity-80">
             Pricing
           </Link>
-          <Link href="#" className="text-black hover:opacity-80">
+          <Link href="/#features" className="text-black hover:opacity-80">
             Features
           </Link>
         </nav>
 
         {/* Desktop button */}
         <div className="hidden md:block">
-          <button
-            className={`bg-black text-white px-5 py-2.5 rounded-md text-sm ${kumbhSans.className}`}
+          <Link
+            href="/login"
+            className={`inline-block bg-black text-white px-5 py-2.5 rounded-md text-sm ${kumbhSans.className}`}
           >
-            Download
-          </button>
+            Login
+          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -77,22 +78,42 @@ export default function Header() {
         <div className="md:hidden absolute inset-x-0 top-full px-4 sm:px-6 pb-4">
           <div className="mx-auto w-full max-w-[680px] rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-2 sm:p-3">
             <div className={`flex flex-col ${kumbhSans.className}`}>
-              <Link href="#" className="px-4 py-3 text-black hover:bg-black/5">
+              <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 text-black hover:bg-black/5"
+              >
                 Home
               </Link>
-              <Link href="#" className="px-4 py-3 text-black hover:bg-black/5">
+              <Link
+                href="/#about"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 text-black hover:bg-black/5"
+              >
                 About Us
               </Link>
-              <Link href="#" className="px-4 py-3 text-black hover:bg-black/5">
+              <Link
+                href="/#pricing"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 text-black hover:bg-black/5"
+              >
                 Pricing
               </Link>
-              <Link href="#" className="px-4 py-3 text-black hover:bg-black/5">
+              <Link
+                href="/#features"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 text-black hover:bg-black/5"
+              >
                 Features
               </Link>
               <div className="px-4 py-3">
-                <button className="w-full bg-black text-white px-5 py-2.5 rounded-md text-sm">
-                  Download
-                </button>
+                <Link
+                  href="/login"
+                  onClick={() => setOpen(false)}
+                  className="block w-full text-center bg-black text-white px-5 py-2.5 rounded-md text-sm"
+                >
+                  Login
+                </Link>
               </div>
             </div>
           </div>
