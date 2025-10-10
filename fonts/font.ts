@@ -48,6 +48,12 @@ export const poppins = localFont({
   display: "swap",
 });
 
+export const bodon = localFont({
+  src: [{ path: "/HP-Bodon-Poster-Bold.ttf", style: "normal" }],
+  variable: "--font-bodon",
+  display: "swap",
+});
+
 export const gravitasOne = Gravitas_One({
   variable: "--font-gravitas-one",
   subsets: ["latin"],

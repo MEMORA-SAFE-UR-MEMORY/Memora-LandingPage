@@ -1,4 +1,5 @@
-import Header from "@/components/shared/Header";
+// login không dùng Header/Footer riêng, Header đã ở layout tổng
+import Footer from "@/components/shared/Footer";
 
 export const metadata = {
   title: "Login — Memora",
@@ -10,9 +11,11 @@ export default function LoginLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-dvh flex flex-col">
-      <Header />
-      <main className="flex-1 pt-24 sm:pt-28 pb-12">{children}</main>
+    <div className="min-h-dvh flex flex-col pt-24 sm:pt-28">
+      <main className="flex-1 flex items-center justify-center px-6 md:px-10 my-4 md:my-8">
+        <div className="mx-auto w-full max-w-[1100px]">{children}</div>
+      </main>
+      <Footer />
     </div>
   );
 }

@@ -1,4 +1,5 @@
-// app/(home)/layout.tsx
+import Footer from "@/components/shared/Footer";
+
 export default function HomeLayout({
   children,
 }: {
@@ -7,6 +8,7 @@ export default function HomeLayout({
   return (
     <div className="min-h-dvh flex flex-col">
       <main className="flex-1">{children}</main>
+      <Footer />
     </div>
   );
 }

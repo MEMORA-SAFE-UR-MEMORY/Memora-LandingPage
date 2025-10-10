@@ -1,11 +1,11 @@
-// app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./_providers";
-import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
 
 // CHỈ dùng các font export từ /fonts/font
 import {
+  bodon,
   gravitasOne,
   kumbhSans,
   poiretOne,
@@ -15,10 +15,8 @@ import {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://memora-official.com"),
-  title: {
-    default: "Memora",
-    template: "%s | Memora",
-  },
+  title: "Memora",
+
   description:
     "Memora – Ứng dụng lưu trữ ký ức số, giúp bạn giữ gìn và sắp xếp những khoảnh khắc đáng nhớ trong không gian phòng ký ức riêng tư, an toàn và đầy cảm xúc.",
   alternates: {
@@ -43,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${poppins.variable} ${gravitasOne.variable} ${kumbhSans.variable} ${raleway.variable} ${poiretOne.variable} overflow-x-hidden`}
+      className={`${poppins.variable} ${bodon.variable} ${gravitasOne.variable} ${kumbhSans.variable} ${raleway.variable} ${poiretOne.variable} overflow-x-hidden`}
     >
       {/* flex-col để Footer ôm đáy khi trang ngắn; min-h-dvh ổn định trên mobile */}
       <body className="antialiased relative min-h-screen flex flex-col overflow-x-hidden max-w-[100vw] w-screen">
@@ -68,17 +66,17 @@ export default function RootLayout({
                        from-purple-200/60 via-pink-200/60 to-blue-200/60"
           />
         </div>
+        <Header />
         <Providers>
           <main className="flex-1">
             <div
               className="mx-auto w-full
-                         max-w-[100vw] sm:max-w-[880px] md:max-w-[920px]
-                         lg:max-w-[1320px] xl:max-w-[1440px] 2xl:max-w-[1520px]"
+                         max-w-[98vw] sm:max-w-[960px] md:max-w-[1280px]
+                         lg:max-w-[1440px] xl:max-w-[1660px] 2xl:max-w-[min(98vw,1920px)]"
             >
               {children}
             </div>
           </main>
-          <Footer />
         </Providers>
       </body>
     </html>

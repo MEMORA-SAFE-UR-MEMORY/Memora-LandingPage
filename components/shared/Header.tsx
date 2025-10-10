@@ -12,9 +12,9 @@ export default function Header() {
     <header className="w-full absolute top-0 left-0 z-50">
       <div className="mx-auto w-[min(96vw,1200px)] flex items-center justify-between py-4 sm:py-5 px-4 sm:px-6">
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Image src={Logo} alt="logo" width={80} height={80} priority />
-        </div>
+        </Link>
 
         {/* Desktop nav */}
         <nav
