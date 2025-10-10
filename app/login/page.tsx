@@ -2,14 +2,27 @@
 
 import React, { useState } from "react";
 // import Link from "next/link";
-import { kumbhSans, montserrat } from "@/fonts/font";
+import { montserrat } from "@/fonts/font";
 import { CircleHelp } from "lucide-react";
+import { useLogin } from "@/services/auth/hooks";
 
 export default function LoginPage() {
   const [showPw, setShowPw] = useState(false);
+  const { login, loading, error } = useLogin();
 
   const onLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget as HTMLFormElement;
+    const email =
+      (form.elements.namedItem("email") as HTMLInputElement)?.value || "";
+    const password =
+      (form.elements.namedItem("password") as HTMLInputElement)?.value || "";
+    login({ email, password }).then((res) => {
+      if (res?.accessToken) {
+        // TODO: chuyển hướng sau khi login
+        // window.location.href = "/";
+      }
+    });
   };
 
   const onCheckOrder = (e: React.FormEvent<HTMLFormElement>) => {
@@ -70,25 +83,18 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className={`${montserrat.className} w-full bg-[#FE93C8] text-white py-2.5 rounded-md hover:bg-[#f77cb9] transition`}
+              className={`${montserrat.className} w-full bg-[#FE93C8] text-white py-2.5 rounded-md hover:bg-[#f77cb9] transition disabled:opacity-60`}
+              disabled={loading}
             >
-              ĐĂNG NHẬP VÀ TIẾP TỤC
+              {loading ? "Đang đăng nhập..." : "ĐĂNG NHẬP VÀ TIẾP TỤC"}
             </button>
-
-            {/* <button
-              type="button"
-              className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2.5 rounded-md hover:bg-gray-50 transition"
-            >
-              <GoogleIcon />
-              Sign in with Google
-            </button> */}
-
-            {/* <p className="text-center text-sm text-gray-600">
-              Don’t have an account?{" "}
-              <Link href="#" className="text-black hover:opacity-80 underline">
-                Create a new account
-              </Link>
-            </p> */}
+            {error && (
+              <p
+                className={`${montserrat.className} text-sm text-red-600 mt-2`}
+              >
+                {error}
+              </p>
+            )}
           </form>
         </div>
 
