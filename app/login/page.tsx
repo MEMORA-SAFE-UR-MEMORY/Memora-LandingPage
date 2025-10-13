@@ -5,24 +5,22 @@ import React, { useState } from "react";
 import { montserrat } from "@/fonts/font";
 import { CircleHelp } from "lucide-react";
 import { useLogin } from "@/services/auth/hooks";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [showPw, setShowPw] = useState(false);
+  const router = useRouter();
   const { login, loading, error } = useLogin();
 
-  const onLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget as HTMLFormElement;
+    const form = e.currentTarget;
     const email =
       (form.elements.namedItem("email") as HTMLInputElement)?.value || "";
     const password =
       (form.elements.namedItem("password") as HTMLInputElement)?.value || "";
-    login({ email, password }).then((res) => {
-      if (res?.accessToken) {
-        // TODO: chuyển hướng sau khi login
-        // window.location.href = "/";
-      }
-    });
+    const res = await login({ email, password });
+    if (res?.accessToken) router.push("/orders");
   };
 
   const onCheckOrder = (e: React.FormEvent<HTMLFormElement>) => {
@@ -107,18 +105,15 @@ export default function LoginPage() {
           </h2>
 
           <form onSubmit={onCheckOrder} className="space-y-4">
-            <InputFloat id="orderNumber" label="Mã đơn hàng" type="text" />
             <InputFloat
-              id="orderEmail"
-              label="Email đơn hàng"
-              type="email"
+              id="orderNumber"
+              label="Mã đơn hàng"
+              type="text"
               endSlot={
-                <InfoTooltip
-                  message="Vui lòng điền mã đơn hàng theo như mẫu.
-                 Ví dụ: PNDES00012345"
-                />
+                <InfoTooltip message="Mã đơn hàng được gửi vào email của bạn sau khi đặt hàng thành công." />
               }
             />
+            <InputFloat id="orderEmail" label="Email đơn hàng" type="email" />
 
             <button
               type="submit"

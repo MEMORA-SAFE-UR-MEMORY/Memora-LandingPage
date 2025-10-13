@@ -5,6 +5,5 @@ export type LoginRequest = {
 
 export type LoginResponse = {
   accessToken: string;
-  // extend with any additional fields returned by API if needed
   [key: string]: unknown;
 };

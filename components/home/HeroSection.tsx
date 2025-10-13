@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Header from "../shared/Header";
 import { gravitasOne, kumbhSans, poiretOne } from "@/fonts/font";
 import Image from "next/image";
 import PointIcon from "../../public/icons/point.svg";
@@ -11,8 +10,6 @@ import DiamondSparkles from "../animations/DiamondSparkles";
 const HeroSection = () => {
   return (
     <section className="relative flex flex-col items-center justify-center min-h-screen text-center overflow-hidden pt-2 sm:pt-4">
-      <Header />
-
       <DiamondSparkles className="-z-10" count={16} />
 
       {/* Content */}
