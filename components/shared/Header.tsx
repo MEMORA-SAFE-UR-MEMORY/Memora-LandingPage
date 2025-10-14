@@ -66,8 +66,8 @@ export default function Header() {
           <Link href="/#features" className="text-black hover:opacity-80">
             Tính năng
           </Link>
-          <Link href="/#pricing" className="text-black hover:opacity-80">
-            Pricing
+          <Link href="/privacy-policy" className="text-black hover:opacity-80">
+            Chính sách và Điều khoản
           </Link>
         </nav>
 
@@ -158,11 +158,11 @@ export default function Header() {
                 Tính năng
               </Link>
               <Link
-                href="/#pricing"
+                href="/privacy-policy"
                 onClick={() => setOpen(false)}
                 className="px-4 py-3 text-black hover:bg-black/5"
               >
-                Pricing
+                Chính sách và Điều khoản
               </Link>
 
               <div className="px-4 py-3 mt-1">
