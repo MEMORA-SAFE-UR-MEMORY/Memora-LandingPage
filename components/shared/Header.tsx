@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { kumbhSans, montserrat } from "@/fonts/font";
@@ -12,12 +12,30 @@ const AUTH_EVENT = "memora:auth";
 
 export default function Header() {
   const router = useRouter();
-  const [open, setOpen] = useState(false); // mobile menu
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false); // desktop profile dropdown
   const profileRef = useRef<HTMLDivElement | null>(null);
 
-  // đơn giản: kiểm tra 1 lần khi mount + nghe mỗi AUTH_EVENT
+  const goToSection = (hash: string) => {
+    const el = document.getElementById(hash);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleSectionClick = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    hash: string
+  ) => {
+    if (pathname === "/") {
+      event.preventDefault();
+      goToSection(hash);
+      setOpen(false);
+    }
+  };
+
   useEffect(() => {
     const check = () => setIsLoggedIn(!!localStorage.getItem("accessToken"));
     check();
@@ -27,7 +45,6 @@ export default function Header() {
       window.removeEventListener(AUTH_EVENT, onAuth as EventListener);
   }, []);
 
-  // click outside để đóng dropdown profile
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (!profileRef.current) return;
@@ -60,11 +77,20 @@ export default function Header() {
           <Link href="/" className="text-black hover:opacity-80">
             Trang chủ
           </Link>
-          <Link href="/#about" className="text-black hover:opacity-80">
-            Về chúng tôi
-          </Link>
-          <Link href="/#features" className="text-black hover:opacity-80">
+
+          <Link
+            href="/#feature"
+            onClick={(event) => handleSectionClick(event, "feature")}
+            className="text-black hover:opacity-80"
+          >
             Tính năng
+          </Link>
+          <Link
+            href="/#about"
+            onClick={(event) => handleSectionClick(event, "about")}
+            className="text-black hover:opacity-80"
+          >
+            Về chúng tôi
           </Link>
           <Link href="/privacy-policy" className="text-black hover:opacity-80">
             Chính sách và Điều khoản
@@ -144,18 +170,18 @@ export default function Header() {
                 Trang chủ
               </Link>
               <Link
+                href="/#feature"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 text-black hover:bg-black/5"
+              >
+                Tính năng
+              </Link>
+              <Link
                 href="/#about"
                 onClick={() => setOpen(false)}
                 className="px-4 py-3 text-black hover:bg-black/5"
               >
                 Về chúng tôi
-              </Link>
-              <Link
-                href="/#features"
-                onClick={() => setOpen(false)}
-                className="px-4 py-3 text-black hover:bg-black/5"
-              >
-                Tính năng
               </Link>
               <Link
                 href="/privacy-policy"

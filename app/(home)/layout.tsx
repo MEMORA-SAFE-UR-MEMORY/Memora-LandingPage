@@ -1,4 +1,5 @@
 import Footer from "@/components/shared/Footer";
+import { ScrollToTopButton } from "@/components/shared/ScrollToTopButton";
 
 export default function HomeLayout({
   children,
@@ -9,6 +10,7 @@ export default function HomeLayout({
     <div className="min-h-dvh flex flex-col">
       <main className="flex-1">{children}</main>
       <Footer />
+      <ScrollToTopButton />
     </div>
   );
 }

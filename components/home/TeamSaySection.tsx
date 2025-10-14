@@ -16,7 +16,10 @@ export default function TeamSaySection() {
   const [activeName, setActiveName] = useState<string>("Chau");
 
   return (
-    <section className="relative pt-2 lg:pt-10 pb-10 lg:pb-18 overflow-hidden overflow-x-hidden">
+    <section
+      id="about"
+      className="relative pt-2 lg:pt-10 pb-10 lg:pb-18 overflow-hidden overflow-x-hidden"
+    >
       {/* soft edge glows */}
 
       <span className="pointer-events-none absolute right-[-80px] top-[200px] -z-10 h-[360px] w-[520px] rounded-full blur-[120px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_60%_60%,#ffe7b0_0%,#ff5a4e_38%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
