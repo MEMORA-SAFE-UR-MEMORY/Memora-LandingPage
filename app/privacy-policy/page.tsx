@@ -10,6 +10,7 @@ import React, {
 import { gsap } from "gsap";
 
 import text from "@/mocks/aboutText.json";
+import { toast } from "sonner";
 
 export default function PrivacyPolicyPage() {
   const [isExpanded, setIsExpanded] = useState<number | null>(null);
@@ -24,9 +25,10 @@ export default function PrivacyPolicyPage() {
   const copyToClipboard = async (value: string) => {
     try {
       await navigator.clipboard.writeText(value);
-      alert(`Copied: ${value}`);
+      toast.success(`Đã copy: ${value}`);
     } catch (error) {
       console.error("Failed to copy text: ", error);
+      toast.error("Không thể copy, thử lại nhé.");
     }
   };
 
@@ -112,35 +114,37 @@ export default function PrivacyPolicyPage() {
   answersRef.current.length = text.faqData.length;
 
   return (
-    <div ref={containerRef} className="font-poppins-light space-y-12">
-      <Section className="mx-auto p-8 fade-up">
-        <div className="bg-card rounded-2xl shadow-md p-4">
-          <h1 className="titleText text-4xl font-bold text-title-primary mb-4">
+    <div ref={containerRef} className="space-y-6">
+      <Section className="mx-auto px-8 py-2 fade-up">
+        <div className="bg-white/20 rounded-2xl shadow-md px-4 py-6">
+          <h1 className="font-poppins-medium text-3xl mb-4">
             {text.welcomeClaimX}
           </h1>
-          <p className="normalText text-normal">{text.mainDescription}</p>
-          <br />
-          <p className="normalText text-normal">{text.subDescription}</p>
+          <p className="font-poppins-regular text-gray-700">
+            {text.mainDescription}
+          </p>
+          {/* <br />
+          <p className="font-poppins-regular">{text.subDescription}</p> */}
         </div>
       </Section>
 
       <Section className="mx-auto px-8 fade-up">
-        <h2 className="titleText font-semibold text-2xl text-title-primary">
+        {/* <h2 className="font-poppins-medium text-2xl text-title-primary">
           {text.faqTitle}
-        </h2>
+        </h2> */}
 
         {text.faqData.map(
           (
             item: { icon: string; question: string; answer: string },
             index: number
           ) => (
-            <div key={index} className="normalText mt-4 fade-up">
+            <div key={index} className="mt-4 fade-up">
               <button
                 className="flex justify-between w-full text-left font-medium text-md items-center p-3 rounded-[24px] transition-colors duration-300 hover:bg-btn-primary"
                 onClick={() => toggleAccordion(index)}
                 aria-expanded={isExpanded === index}
               >
-                <span className="flex items-center gap-2">
+                <span className="font-poppins-medium flex items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -172,7 +176,7 @@ export default function PrivacyPolicyPage() {
               <div className="overflow-hidden">
                 <div
                   ref={setAnswerRef(index)}
-                  className={`answer-content answer-${index} px-1 pt-1 pb-3 text-normal leading-relaxed`}
+                  className={`answer-content answer-${index} px-1 pt-1 pb-3 font-poppins-regular leading-relaxed`}
                   aria-hidden={isExpanded !== index}
                 >
                   {item.answer}
@@ -183,12 +187,12 @@ export default function PrivacyPolicyPage() {
         )}
       </Section>
 
-      <Section className="mx-auto px-8 py-4 fade-up">
-        <h2 className="titleText text-2xl font-semibold text-title-primary mb-4">
+      <Section className="mx-auto px-8 fade-up">
+        <h2 className="text-3xl font-poppins-medium mb-4">
           {text.contactTitle}
         </h2>
 
-        <div className="normalText flex flex-col gap-3">
+        <div className="font-poppins-regular   flex flex-col gap-3">
           <ContactRow
             icon={text.contactInfo.phoneIcon}
             label={text.customerSupport}
@@ -216,7 +220,7 @@ type ContactRowProps = {
 
 function ContactRow({ icon, label, value, onCopy }: ContactRowProps) {
   return (
-    <div className="normalText flex items-center gap-2 group">
+    <div className="flex items-center gap-2 group">
       <span className="w-6 h-6" dangerouslySetInnerHTML={{ __html: icon }} />
       <span className="font-medium">{label}</span>
       <p>{value}</p>

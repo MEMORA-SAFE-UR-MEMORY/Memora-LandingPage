@@ -12,6 +12,7 @@ import {
   poppins,
   raleway,
 } from "@/fonts/font";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://memora-official.com"),
@@ -77,6 +78,7 @@ export default function RootLayout({
               {children}
             </div>
           </main>
+          <Toaster />
         </Providers>
       </body>
     </html>
