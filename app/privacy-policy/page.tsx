@@ -7,7 +7,8 @@ import React, {
   useState,
   type ReactNode,
 } from "react";
-import { animate, stagger } from "motion";
+import { gsap } from "gsap";
+
 import text from "@/mocks/aboutText.json";
 
 export default function PrivacyPolicyPage() {
@@ -35,25 +36,18 @@ export default function PrivacyPolicyPage() {
       containerRef.current?.querySelectorAll<HTMLElement>(".fade-up");
     if (!nodes || nodes.length === 0) return;
 
-    const elements = Array.from(nodes);
-    elements.forEach((el) => {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(16px)";
-    });
+    const ctx = gsap.context(() => {
+      gsap.set(nodes, { autoAlpha: 0, y: 16 });
+      gsap.to(nodes, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power2.out",
+        stagger: 0.12,
+      });
+    }, containerRef);
 
-    const controls = animate(
-      elements,
-      { opacity: 1, y: 0 },
-      { duration: 0.9, easing: "ease-out", delay: stagger(0.12) }
-    );
-
-    return () => {
-      if (Array.isArray(controls)) {
-        controls.forEach((ctrl) => ctrl.stop());
-      } else {
-        controls.stop();
-      }
-    };
+    return () => ctx.revert();
   }, []);
 
   // Smooth accordion expand/collapse
@@ -64,18 +58,17 @@ export default function PrivacyPolicyPage() {
     if (prevIndex !== null && prevIndex !== isExpanded) {
       const closing = answersRef.current[prevIndex];
       if (closing) {
-        const startHeight = closing.scrollHeight;
-        const controls = animate(
-          closing,
-          { height: [`${startHeight}px`, "0px"], opacity: [1, 0] },
-          { duration: 0.45, easing: "easeInOut" }
-        );
-
-        controls.finished.then(() => {
-          if (prevExpanded.current === prevIndex) return;
-          closing.style.display = "none";
-          closing.style.height = "0px";
-          closing.style.opacity = "0";
+        gsap.to(closing, {
+          height: 0,
+          autoAlpha: 0,
+          duration: 0.45,
+          ease: "power2.inOut",
+          onComplete: () => {
+            if (prevExpanded.current === prevIndex) return;
+            closing.style.display = "none";
+            closing.style.height = "0px";
+            closing.style.opacity = "0";
+          },
         });
       }
     }
@@ -85,21 +78,21 @@ export default function PrivacyPolicyPage() {
       const opening = answersRef.current[currentIndex];
       if (opening) {
         opening.style.display = "block";
-        const targetHeight = opening.scrollHeight;
-        opening.style.height = "0px";
-        opening.style.opacity = "0";
-
-        const controls = animate(
+        const target = opening.scrollHeight;
+        gsap.fromTo(
           opening,
-          { height: ["0px", `${targetHeight}px`], opacity: [0, 1] },
-          { duration: 0.5, easing: "easeOut" }
+          { height: 0, autoAlpha: 0 },
+          {
+            height: target,
+            autoAlpha: 1,
+            duration: 0.5,
+            ease: "power2.out",
+            onComplete: () => {
+              if (prevExpanded.current !== currentIndex) return;
+              opening.style.height = "auto";
+            },
+          }
         );
-
-        controls.finished.then(() => {
-          if (prevExpanded.current !== currentIndex) return;
-          opening.style.height = "auto";
-          opening.style.opacity = "1";
-        });
       }
     }
   }, [isExpanded]);
