@@ -111,14 +111,15 @@ export default function PrivacyPolicyPage() {
     []
   );
 
-  answersRef.current.length = text.faqData.length;
+  answersRef.current.length = text.dieuKhoan.length;
+  answersRef.current.length = text.chinhSach.length;
 
   return (
     <div ref={containerRef} className="space-y-6">
       <Section className="mx-auto px-8 py-2 fade-up">
         <div className="bg-white/20 rounded-2xl shadow-md px-4 py-6">
           <h1 className="font-poppins-medium text-3xl mb-4">
-            {text.welcomeClaimX}
+            {text.dieuKhoanSuDung}
           </h1>
           <p className="font-poppins-regular text-gray-700">
             {text.mainDescription}
@@ -133,18 +134,84 @@ export default function PrivacyPolicyPage() {
           {text.faqTitle}
         </h2> */}
 
-        {text.faqData.map(
+        {text.dieuKhoan.map(
           (
             item: { icon: string; question: string; answer: string },
             index: number
           ) => (
             <div key={index} className="mt-4 fade-up">
               <button
-                className="flex justify-between w-full text-left font-medium text-md items-center p-3 rounded-[24px] transition-colors duration-300 hover:bg-btn-primary"
+                className="flex justify-between w-full text-left font-medium text-lg items-center p-3 rounded-[24px] transition-colors duration-300 hover:bg-[#ebc6d9]"
                 onClick={() => toggleAccordion(index)}
                 aria-expanded={isExpanded === index}
               >
-                <span className="font-poppins-medium flex items-center gap-2">
+                <span className="font-poppins-medium flex items-center gap-6">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="1.75rem"
+                    height="1.75rem"
+                    className="fill-current"
+                    dangerouslySetInnerHTML={{ __html: item.icon }}
+                  />
+                  {item.question}
+                </span>
+
+                <span
+                  className={`transform transition-transform duration-300 ${
+                    isExpanded === index ? "rotate-180" : "rotate-0"
+                  }`}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                    width="1.25rem"
+                    height="1.25rem"
+                    className="fill-current text-gray-600"
+                  >
+                    <path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                  </svg>
+                </span>
+              </button>
+
+              <div className="overflow-hidden">
+                <div
+                  ref={setAnswerRef(index)}
+                  className={`answer-content answer-${index} px-1 pt-1 pb-3 font-poppins-regular leading-relaxed`}
+                  aria-hidden={isExpanded !== index}
+                >
+                  {item.answer}
+                </div>
+              </div>
+            </div>
+          )
+        )}
+      </Section>
+
+      <Section className="mx-auto px-8 py-2 fade-up">
+        <div className="bg-white/20 rounded-2xl shadow-md px-4 py-6">
+          <h1 className="font-poppins-medium text-3xl mb-4">
+            {text.chinhSachQuyenRiengTu}
+          </h1>
+          <p className="font-poppins-regular text-gray-700">
+            {text.mainDescription2}
+          </p>
+        </div>
+      </Section>
+
+      <Section className="mx-auto px-8 fade-up">
+        {text.chinhSach.map(
+          (
+            item: { icon: string; question: string; answer: string },
+            index: number
+          ) => (
+            <div key={index} className="mt-4 fade-up">
+              <button
+                className="flex justify-between w-full text-left font-medium text-lg items-center p-3 rounded-[9999px] transition-colors duration-300 hover:bg-[#ffecf6]"
+                onClick={() => toggleAccordion(index)}
+                aria-expanded={isExpanded === index}
+              >
+                <span className="font-poppins-medium flex items-center gap-6">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -193,12 +260,16 @@ export default function PrivacyPolicyPage() {
         </h2>
 
         <div className="font-poppins-regular   flex flex-col gap-3">
-          <ContactRow
+          <p>
+            Mọi thắc mắc hoặc yêu cầu liên quan đến Điều khoản Sử dụng hay Chính
+            sách Quyền Riêng tư có thể được gửi về:
+          </p>
+          {/* <ContactRow
             icon={text.contactInfo.phoneIcon}
             label={text.customerSupport}
             value={text.contactInfo.phone}
             onCopy={copyToClipboard}
-          />
+          /> */}
           <ContactRow
             icon={text.contactInfo.emailIcon}
             label={text.email}
@@ -225,7 +296,7 @@ function ContactRow({ icon, label, value, onCopy }: ContactRowProps) {
       <span className="font-medium">{label}</span>
       <p>{value}</p>
       <button
-        className="transition-opacity duration-300 bg-transparent border-none cursor-pointer flex items-center justify-center rounded-full w-10 h-10 hover:bg-gray-300"
+        className="transition-opacity duration-300 bg-transparent border-none cursor-pointer flex items-center justify-center rounded-full w-10 h-10 hover:bg-[#ffecf6]"
         onClick={() => onCopy(value)}
         aria-label={`Copy ${label}`}
       >

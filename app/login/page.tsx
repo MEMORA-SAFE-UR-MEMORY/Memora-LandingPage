@@ -1,16 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import Link from "next/link";
 import { montserrat } from "@/fonts/font";
 import { CircleHelp } from "lucide-react";
 import { useLogin } from "@/services/auth/hooks";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const [showPw, setShowPw] = useState(false);
   const router = useRouter();
   const { login, loading, error } = useLogin();
+
+  useEffect(() => {
+    if (error) toast.error(error);
+  }, [error]);
 
   const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,7 +25,10 @@ export default function LoginPage() {
     const password =
       (form.elements.namedItem("password") as HTMLInputElement)?.value || "";
     const res = await login({ email, password });
-    if (res?.accessToken) router.push("/orders");
+    if (res?.accessToken) {
+      toast.success("Đăng nhập thành công!");
+      router.push("/orders");
+    }
   };
 
   const onCheckOrder = (e: React.FormEvent<HTMLFormElement>) => {

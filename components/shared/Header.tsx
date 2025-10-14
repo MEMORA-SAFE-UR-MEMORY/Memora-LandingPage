@@ -95,7 +95,7 @@ export default function Header() {
                     href="/orders"
                     onClick={() => setProfileOpen(false)}
                     role="menuitem"
-                    className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-black/5"
+                    className="flex items-center gap-2 px-3 py-2 rounded-2xl transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#ffecf6]"
                   >
                     <Package size={16} />
                     <span>Đơn hàng của bạn</span>
@@ -103,7 +103,7 @@ export default function Header() {
                   <button
                     role="menuitem"
                     onClick={handleLogout}
-                    className="flex w-full items-center gap-2 px-3 py-2 rounded-md hover:bg-black/5 text-left"
+                    className="flex w-full items-center gap-2 px-3 py-2 rounded-2xl transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#ffecf6] text-left"
                   >
                     <LogOut size={16} />
                     <span>Đăng xuất</span>
@@ -171,7 +171,7 @@ export default function Header() {
                     <Link
                       href="/orders"
                       onClick={() => setOpen(false)}
-                      className="flex items-center justify-center gap-2 rounded-md border px-5 py-2.5 text-sm hover:bg-black/5"
+                      className="flex items-center justify-center gap-2 rounded-md border px-5 py-2.5 text-sm hover:bg-[#ffecf6]"
                     >
                       Đơn hàng của bạn
                     </Link>

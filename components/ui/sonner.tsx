@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Toaster as Sonner, ToasterProps } from "sonner";
+import { poppins } from "@/fonts/font";
 
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme();
@@ -17,6 +18,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
     <Sonner
       theme={theme as ToasterProps["theme"]}
       className="toaster group"
+      position="top-right"
+      duration={4000}
+      toastOptions={{
+        className: poppins.className,
+      }}
       icons={{
         success: <CircleCheckIcon className="size-4" />,
         info: <InfoIcon className="size-4" />,
