@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { kumbhSans, montserrat } from "@/fonts/font";
+import { montserrat } from "@/fonts/font";
 import Logo from "../../public/logo/Logo.svg";
 import { LogOut, Package, UserRound, Menu, X } from "lucide-react";
 

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import type { OrderDetail, OrderListItem } from "./types";
-import { getOrderById, getOrders } from "./api";
+import { getOrderById, getOrders, searchOrderStatus } from "./api";
 
 export function useOrders() {
   const [data, setData] = useState<OrderListItem[]>([]);
@@ -51,4 +51,32 @@ export function useOrder() {
   }, []);
 
   return { data, loading, error, fetchById };
+}
+
+export function useOrderStatus() {
+  const [status, setStatus] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const search = useCallback(
+    async ({ id, email }: { id: string; email: string }) => {
+      setLoading(true);
+      setError(null);
+      try {
+        const result = await searchOrderStatus({ id, email });
+        setStatus(result);
+        return result;
+      } catch (e) {
+        const msg = (e as Error).message || "Search failed";
+        setError(msg);
+        setStatus(null);
+        return null;
+      } finally {
+        setLoading(false);
+      }
+    },
+    []
+  );
+
+  return { status, loading, error, search };
 }

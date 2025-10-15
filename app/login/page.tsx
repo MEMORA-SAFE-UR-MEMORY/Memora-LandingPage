@@ -7,15 +7,26 @@ import { CircleHelp } from "lucide-react";
 import { useLogin } from "@/services/auth/hooks";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { SpinnerCustom } from "@/components/ui/spinner";
+import { useOrderStatus } from "@/services/orders/hooks";
 
 export default function LoginPage() {
   const [showPw, setShowPw] = useState(false);
   const router = useRouter();
   const { login, loading, error } = useLogin();
+  const {
+    status: orderStatus,
+    loading: searching,
+    error: searchError,
+    search,
+  } = useOrderStatus();
 
   useEffect(() => {
     if (error) toast.error(error);
   }, [error]);
+  useEffect(() => {
+    if (searchError) toast.error(searchError);
+  }, [searchError]);
 
   const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,108 +42,134 @@ export default function LoginPage() {
     }
   };
 
-  const onCheckOrder = (e: React.FormEvent<HTMLFormElement>) => {
+  const onCheckOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const id =
+      (
+        form.elements.namedItem("orderNumber") as HTMLInputElement
+      )?.value.trim() || "";
+    const email =
+      (
+        form.elements.namedItem("orderEmail") as HTMLInputElement
+      )?.value.trim() || "";
+
+    if (!id || !email) {
+      toast.error("Vui lòng nhập đầy đủ Mã đơn hàng và Email.");
+      return;
+    }
+
+    await toast.promise(search({ id, email }), {
+      loading: "Đang kiểm tra...",
+      success: (result) => `Trạng thái: ${result}`,
+      error: (err) => (err as Error)?.message || "Kiểm tra đơn hàng thất bại.",
+    });
   };
 
   return (
-    <section className="w-full">
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-        {/* vạch chia giữa */}
-        <div
-          aria-hidden
-          className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 h-full w-px bg-gray-200"
-        />
+    <>
+      {(loading || searching) && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/10 backdrop-blur-sm">
+          <SpinnerCustom />
+        </div>
+      )}
+      <section className="w-full">
+        <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+          {/* vạch chia giữa */}
+          <div
+            aria-hidden
+            className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 h-full w-px bg-gray-200"
+          />
 
-        {/* LEFT: Login */}
-        <div className="">
-          <h2
-            className={`${montserrat.className} text-2xl font-semibold tracking-wide mb-4`}
-          >
-            ĐĂNG NHẬP
-          </h2>
+          {/* LEFT: Login */}
+          <div className="">
+            <h2
+              className={`${montserrat.className} text-2xl font-semibold tracking-wide mb-4`}
+            >
+              ĐĂNG NHẬP
+            </h2>
 
-          <form onSubmit={onLogin} className="space-y-4">
-            <InputFloat
-              id="email"
-              label="Email"
-              type="email"
-              autoComplete="email"
-            />
+            <form onSubmit={onLogin} className="space-y-4">
+              <InputFloat
+                id="email"
+                label="Email"
+                type="email"
+                autoComplete="email"
+              />
 
-            <div className="space-y-2">
-              <div className="relative">
-                <InputFloat
-                  id="password"
-                  label="Mật khẩu"
-                  type={showPw ? "text" : "password"}
-                  autoComplete="current-password"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPw((v) => !v)}
-                  className={`${montserrat.className} absolute right-2 top-1/2 -translate-y-1/2 text-sm px-2 text-gray-600 hover:text-black`}
-                  aria-label={showPw ? "Hide password" : "Show password"}
-                >
-                  {showPw ? "Ẩn" : "Hiện"}
-                </button>
+              <div className="space-y-2">
+                <div className="relative">
+                  <InputFloat
+                    id="password"
+                    label="Mật khẩu"
+                    type={showPw ? "text" : "password"}
+                    autoComplete="current-password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPw((v) => !v)}
+                    className={`${montserrat.className} absolute right-2 top-1/2 -translate-y-1/2 text-sm px-2 text-gray-600 hover:text-black`}
+                    aria-label={showPw ? "Hide password" : "Show password"}
+                  >
+                    {showPw ? "Ẩn" : "Hiện"}
+                  </button>
+                </div>
               </div>
-              {/* <div className="flex items-center justify-between text-sm">
-                <label className="flex items-center gap-2 text-gray-700">
-                  <input type="checkbox" className="accent-black" /> Remember me
-                </label>
-                <Link href="#" className="text-black hover:opacity-80">
-                  Forgot Password?
-                </Link>
-              </div> */}
-            </div>
 
-            <button
-              type="submit"
-              className={`${montserrat.className} w-full bg-[#FE93C8] text-white py-2.5 rounded-md hover:bg-[#f77cb9] transition disabled:opacity-60`}
-              disabled={loading}
-            >
-              {loading ? "Đang đăng nhập..." : "ĐĂNG NHẬP VÀ TIẾP TỤC"}
-            </button>
-            {error && (
-              <p
-                className={`${montserrat.className} text-sm text-red-600 mt-2`}
+              <button
+                type="submit"
+                className={`${montserrat.className} w-full bg-[#FE93C8] text-white py-2.5 rounded-md hover:bg-[#f77cb9] transition disabled:opacity-60`}
+                disabled={loading}
               >
-                {error}
-              </p>
-            )}
-          </form>
-        </div>
+                {loading ? "Đang đăng nhập..." : "ĐĂNG NHẬP VÀ TIẾP TỤC"}
+              </button>
+              {error && (
+                <p
+                  className={`${montserrat.className} text-sm text-red-600 mt-2`}
+                >
+                  {error}
+                </p>
+              )}
+            </form>
+          </div>
 
-        {/* RIGHT: Check Order Status */}
-        <div>
-          <h2
-            className={`${montserrat.className} text-2xl font-semibold tracking-wide mb-4`}
-          >
-            KIỂM TRA TÌNH TRẠNG ĐƠN HÀNG
-          </h2>
-
-          <form onSubmit={onCheckOrder} className="space-y-4">
-            <InputFloat
-              id="orderNumber"
-              label="Mã đơn hàng"
-              type="text"
-              endSlot={
-                <InfoTooltip message="Mã đơn hàng được gửi vào email của bạn sau khi đặt hàng thành công." />
-              }
-            />
-            <InputFloat id="orderEmail" label="Email đơn hàng" type="email" />
-
-            <button
-              type="submit"
-              className={`${montserrat.className} w-full bg-white border border-gray-300 py-2.5 rounded-md hover:bg-transparent hover:border-gray-50 transition`}
+          {/* RIGHT: Check Order Status */}
+          <div>
+            <h2
+              className={`${montserrat.className} text-2xl font-semibold tracking-wide mb-4`}
             >
-              KIỂM TRA
-            </button>
-          </form>
+              KIỂM TRA TÌNH TRẠNG ĐƠN HÀNG
+            </h2>
+
+            <form onSubmit={onCheckOrder} className="space-y-4">
+              <InputFloat
+                id="orderNumber"
+                label="Mã đơn hàng"
+                type="text"
+                endSlot={
+                  <InfoTooltip message="Mã đơn hàng được gửi vào email của bạn sau khi đặt hàng thành công." />
+                }
+              />
+              <InputFloat id="orderEmail" label="Email đơn hàng" type="email" />
+
+              <button
+                type="submit"
+                className={`${montserrat.className} w-full bg-white border border-gray-300 py-2.5 rounded-md hover:bg-transparent hover:border-gray-50 transition disabled:opacity-60`}
+                disabled={searching}
+              >
+                {searching ? "Đang kiểm tra..." : "KIỂM TRA"}
+              </button>
+              {orderStatus && (
+                <p className={`${montserrat.className} text-md mt-2`}>
+                  Trạng thái:{" "}
+                  <strong className="text-[#C71585]">{orderStatus}</strong>
+                </p>
+              )}
+            </form>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 
@@ -213,26 +250,3 @@ function InfoTooltip({ message }: { message: string }) {
     </div>
   );
 }
-
-// function GoogleIcon() {
-//   return (
-//     <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden>
-//       <path
-//         fill="#FFC107"
-//         d="M43.611 20.083H42V20H24v8h11.303C33.576 32.91 29.162 36 24 36c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.957 3.043L37.314 8.7C33.902 5.551 29.18 3.6 24 3.6 12.318 3.6 2.4 13.518 2.4 25.2S12.318 46.8 24 46.8c11.04 0 20.4-8.96 20.4-20.4 0-1.373-.143-2.709-.404-3.983z"
-//       />
-//       <path
-//         fill="#FF3D00"
-//         d="M6.306 14.691l6.571 4.818C14.838 16.203 19.051 13.2 24 13.2c3.059 0 5.842 1.154 7.957 3.043L37.314 8.7C33.902 5.551 29.18 3.6 24 3.6c-7.783 0-14.502 4.443-17.694 11.091z"
-//       />
-//       <path
-//         fill="#4CAF50"
-//         d="M24 46.8c5.1 0 9.76-1.951 13.313-5.146l-6.147-5.19C29.162 36 24.748 32.91 24 32.91c-5.026 0-9.286-3.4-10.806-8.057l-6.654 5.123C9.686 41.951 16.226 46.8 24 46.8z"
-//       />
-//       <path
-//         fill="#1976D2"
-//         d="M43.611 20.083H42V20H24v8h11.303c-1.142 3.334-4.284 5.91-8.303 5.91-5.026 0-9.286-3.4-10.806-8.057l-6.654 5.123C9.686 41.951 16.226 46.8 24 46.8c11.04 0 20.4-8.96 20.4-20.4 0-1.373-.143-2.709-.404-3.983z"
-//       />
-//     </svg>
-//   );
-// }

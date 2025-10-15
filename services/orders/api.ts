@@ -6,6 +6,7 @@ const API_BASE = (
 
 const PATH_LIST = "/api/Order/getAll";
 const PATH_DETAIL = "/api/Order/getById";
+const PATH_SEARCH = "/api/Order/search";
 
 function authHeaders(): Record<string, string> {
   if (typeof window === "undefined") return {} as Record<string, string>;
@@ -33,4 +34,24 @@ export async function getOrderById(id: string): Promise<OrderDetail> {
   });
   if (!res.ok) throw new Error(res.statusText || "Fetch order failed");
   return (await res.json()) as OrderDetail;
+}
+
+export async function searchOrderStatus(params: {
+  id: string;
+  email: string;
+}): Promise<string> {
+  const url = new URL(`${API_BASE}${PATH_SEARCH}`);
+  url.search = new URLSearchParams({
+    id: params.id,
+    email: params.email,
+  }).toString();
+
+  const headers: HeadersInit = {
+    Accept: "*/*",
+    ...authHeaders(),
+  };
+
+  const res = await fetch(url.toString(), { method: "GET", headers });
+  if (!res.ok) throw new Error(res.statusText || "Search order failed");
+  return await res.text();
 }
