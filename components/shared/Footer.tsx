@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { gravitasOne, kumbhSans } from "@/fonts/font";
+import { gravitasOne, kumbhSans, montserrat } from "@/fonts/font";
 
 export default function Footer() {
   return (
@@ -35,10 +35,11 @@ export default function Footer() {
                   </span>
                 </div>
                 <p
-                  className={`${kumbhSans.className} text-sm !font-medium text-[#C71585]/70 max-w-xs`}
+                  className={`${montserrat.className} text-sm !font-regular text-[#C71585]/70 max-w-xxs`}
                 >
-                  Keep your memories safe and organized—by people, places, and
-                  time. Share what matters, keep the rest private.
+                  Giữ kỷ niệm của bạn an toàn và ngăn nắp — theo người, địa điểm
+                  và thời gian. Chia sẻ những gì quan trọng, giữ phần còn lại ở
+                  chế độ riêng tư.
                 </p>
                 <div className="flex items-center gap-5 text-[#C71585]/80">
                   <Link
@@ -75,30 +76,30 @@ export default function Footer() {
 
               {/* Quick Link */}
               <Column
-                title="Quick Link"
-                fontClassName={kumbhSans.className}
-                titleClassName="text-[#C71585] !font-bold"
-                listClassName="text-[#C71585]/80 !font-medium"
-                linkClassName="text-[#C71585]/70 hover:text-[#C71585] !font-medium"
+                title="Liên kết nhanh"
+                fontClassName={montserrat.className}
+                titleClassName="text-[#C71585] !font-medium"
+                listClassName="text-[#C71585]/80 !font-regular"
+                linkClassName="text-[#C71585]/70 hover:text-[#C71585] !font-regular"
                 items={[
-                  { label: "About", href: "#" },
-                  { label: "Features", href: "#" },
-                  { label: "Screenshot", href: "#" },
-                  { label: "Blog", href: "#" },
+                  { label: "Về chúng tôi", href: "#about" },
+                  { label: "Tính năng", href: "#feature" },
+                  { label: "Chính sách Điều khoản", href: "/privacy-policy" },
                 ]}
               />
 
               {/* Newsletter */}
               <div
-                className={`col-span-2 md:col-span-2 ${kumbhSans.className}`}
+                className={`col-span-2 md:col-span-2 ${montserrat.className}`}
               >
                 <h4
-                  className={`text-2xl !font-bold mb-4 uppercase text-[#C71585] ${kumbhSans.className}`}
+                  className={`text-2xl !font-medium mb-4 uppercase text-[#C71585] ${montserrat.className}`}
                 >
-                  News Letter
+                  Bản tin
                 </h4>
                 <p className="text-sm text-[#C71585]/70 mb-4">
-                  Subscribe our newsletter to get our latest update & news
+                  Đăng ký nhận bản tin của chúng tôi để nhận thông tin cập nhật
+                  & tin tức mới nhất
                 </p>
                 <form
                   onSubmit={(e) => e.preventDefault()}
@@ -107,7 +108,7 @@ export default function Footer() {
                   <div className="flex items-stretch overflow-hidden rounded-xl bg-white text-black">
                     <input
                       type="email"
-                      placeholder="Your email address"
+                      placeholder="Địa chỉ email của bạn"
                       className="w-full px-4 py-3 text-sm outline-none placeholder:text-black-500"
                     />
                     <button
