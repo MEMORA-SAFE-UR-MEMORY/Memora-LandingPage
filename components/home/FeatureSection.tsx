@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Phone2 from "@/public/images/ip2.svg";
 import StarSvg from "@/public/icons/star.svg";
-import { gravitasOne, kumbhSans, poiretOne } from "@/fonts/font";
+import { gotu, montserrat, taviraj } from "@/fonts/font";
 import StarField from "../animations/StarField";
 
 export default function FeatureSection() {
@@ -20,31 +20,31 @@ export default function FeatureSection() {
         {/* RIGHT: copy + list */}
         <div>
           <p
-            className={`${kumbhSans.className} uppercase tracking-[0.25em] text-lg text-black mb-1`}
+            className={`${montserrat.className} uppercase tracking-[0.25em] text-lg text-black mb-4`}
           >
-            Features
+            Tính năng
           </p>
           <h2
-            className={`${gravitasOne.className} text-4xl sm:text-5xl leading-tight text-white mb-6`}
+            className={`${taviraj.className} text-6xl sm:text-7xl font-bold leading-tight text-white mb-6`}
           >
-            DISCOVERY MODE
+            Chế độ <br /> Khám phá
           </h2>
 
-          <div className={`${poiretOne.className} space-y-8`}>
+          <div className={`${gotu.className} space-y-8`}>
             <FeatureRow
               icon={<CompassIcon />}
-              title="Explore Memory Rooms"
-              desc="Browse curated Memory Rooms from creators and friends. Find inspiration from trips, milestones, and everyday moments—beautifully organized."
+              title="Khám phá Phòng Ký Ức"
+              desc="Khám phá các căn phòng được công khai từ mọi người. Tìm cảm hứng từ những chuyến đi, cột mốc và khoảnh khắc đời thường — được sắp xếp đẹp mắt."
             />
             <FeatureRow
               icon={<EyeIcon />}
-              title="View & Interact"
-              desc="Peek into public rooms, react with heart. Follow rooms you love to see new drops in your feed."
+              title="Xem & Cảm nhận"
+              desc="Ghé ngang các phòng công khai, chiêm ngưỡng những phòng bạn yêu thích để thấy được ý nghĩa sâu sắc."
             />
             <FeatureRow
               icon={<ShieldIcon />}
-              title="Privacy, Your Way"
-              desc="Choose who can discover your room: private, friends, or public. Share one link, revoke anytime—your memories stay in your control."
+              title="Riêng tư theo ý bạn"
+              desc="Chọn chế độ có thể khám phá phòng của bạn: riêng tư hoặc công khai. Chia sẻ một liên kết, thu hồi bất cứ lúc nào — kỷ niệm luôn nằm trong tầm kiểm soát của bạn."
             />
           </div>
         </div>
@@ -154,7 +154,7 @@ function FeatureRow({
       <div>
         <h4 className="!font-black text-black text-[20px]">{title}</h4>
         <p
-          className={`${kumbhSans.className} text-gray-700 mt-1 text-[18px] leading-relaxed`}
+          className={`${gotu.className} text-gray-700 mt-1 text-[16px] leading-relaxed`}
         >
           {desc}
         </p>

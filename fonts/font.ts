@@ -1,10 +1,14 @@
 // fonts/font.ts
 import {
+  Darker_Grotesque,
+  Fahkwang,
+  Gotu,
   Gravitas_One,
   Kumbh_Sans,
   Montserrat,
   Poiret_One,
   Raleway_Dots,
+  Taviraj,
 } from "next/font/google";
 import localFont from "next/font/local";
 
@@ -88,5 +92,29 @@ export const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+export const taviraj = Taviraj({
+  variable: "--font-taviraj",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+export const fahkwang = Fahkwang({
+  variable: "--font-fahkwang",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+export const gotu = Gotu({
+  variable: "--font-gotu",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal"],
   display: "swap",
 });

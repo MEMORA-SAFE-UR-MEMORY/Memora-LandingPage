@@ -1,6 +1,14 @@
 "use client";
 
-import { gravitasOne, kumbhSans, poiretOne } from "@/fonts/font";
+import {
+  fahkwang,
+  gotu,
+  gravitasOne,
+  kumbhSans,
+  montserrat,
+  poiretOne,
+  taviraj,
+} from "@/fonts/font";
 import StarSvg from "@/public/icons/star.svg";
 import AvatarMain from "../../public/images/person/person1.jpg";
 import BadgeAvatar from "../animations/BadgeAvatar";
@@ -24,18 +32,18 @@ export default function TeamSaySection() {
 
       <span className="pointer-events-none absolute right-[-80px] top-[200px] -z-10 h-[360px] w-[520px] rounded-full blur-[120px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_60%_60%,#ffe7b0_0%,#ff5a4e_38%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
 
-      <div className="mx-auto w-[min(94vw,1200px)] grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-24 items-center">
+      <div className="mx-auto w-[min(94vw,1200px)] grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* CENTERED HEADING */}
         <div className="lg:col-span-2 order-first text-center">
           <p
-            className={`${kumbhSans.className} uppercase tracking-[0.25em] text-xl text-rose-500 mb-2`}
+            className={`${montserrat.className} uppercase tracking-[0.25em] text-xl text-rose-500 mb-4`}
           >
-            Statement
+            Thông điệp
           </p>
           <h2
-            className={`${gravitasOne.className} text-5xl sm:text-6xl leading-tight text-white`}
+            className={`${taviraj.className} uppercase text-6xl sm:text-7xl leading-tight font-bold text-white`}
           >
-            What Our Team Says
+            Đội ngũ chúng tôi nói gì
           </h2>
         </div>
         {/* LEFT — rings + central avatar + small avatars */}
@@ -243,15 +251,16 @@ export default function TeamSaySection() {
         {/* RIGHT — text */}
         <div className="max-w-xl">
           <h3
-            className={`${kumbhSans.className} !font-semibold text-2xl text-white mb-3`}
+            className={`${gotu.className} !font-semibold text-2xl text-white mb-3`}
           >
-            The best place for memories to stay.
+            Nơi tuyệt nhất để kỷ niệm ở lại.
           </h3>
           <p
-            className={`${poiretOne.className} text-xl !font-semibold text-gray-800 leading-relaxed`}
+            className={`${gotu.className} text-xl text-gray-800 leading-relaxed`}
           >
-            “Memora turns memories into a little world: capture each moment and
-            shape your own exhibition room, a living space for your stories.”
+            “Memora biến ký ức thành một thế giới nhỏ: ghi lại từng khoảnh khắc
+            và tạo phòng trưng bày của riêng bạn — một không gian sống cho những
+            câu chuyện của bạn.”
           </p>
           {/* mini team chips */}
           <div
@@ -309,9 +318,9 @@ export default function TeamSaySection() {
           `}</style>
 
           <div
-            className={`${kumbhSans.className} !italic mt-4 text-sm font-semibold text-gray-900`}
+            className={`${fahkwang.className} !italic mt-4 text-sm font-regular text-gray-900`}
           >
-            Memora Team
+            Đội ngũ Memora
           </div>
         </div>
       </div>

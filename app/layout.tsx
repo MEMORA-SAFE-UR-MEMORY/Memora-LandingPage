@@ -5,12 +5,15 @@ import Header from "@/components/shared/Header";
 
 import {
   bodon,
+  fahkwang,
+  gotu,
   gravitasOne,
   kumbhSans,
   montserrat,
   poiretOne,
   poppins,
   raleway,
+  taviraj,
 } from "@/fonts/font";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -42,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${poppins.variable} ${bodon.variable} ${montserrat.variable} ${gravitasOne.variable} ${kumbhSans.variable} ${raleway.variable} ${poiretOne.variable} overflow-x-hidden`}
+      className={`${gotu.variable} ${fahkwang.variable} ${taviraj.variable} ${poppins.variable} ${bodon.variable} ${montserrat.variable} ${gravitasOne.variable} ${kumbhSans.variable} ${raleway.variable} ${poiretOne.variable} overflow-x-hidden`}
     >
       {/* flex-col để Footer ôm đáy khi trang ngắn; min-h-dvh ổn định trên mobile */}
       <body className="antialiased relative min-h-screen flex flex-col overflow-x-hidden max-w-[100vw] w-screen">

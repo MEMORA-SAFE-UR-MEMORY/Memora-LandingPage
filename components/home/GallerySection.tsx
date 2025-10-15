@@ -3,7 +3,7 @@
 import React from "react";
 import { Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { gravitasOne, kumbhSans, poiretOne } from "@/fonts/font";
+import { gotu, kumbhSans, montserrat, taviraj } from "@/fonts/font";
 
 type Feedback = {
   quote: string;
@@ -19,44 +19,44 @@ type CSSVars = React.CSSProperties & {
 const FEEDBACKS: Feedback[] = [
   {
     quote:
-      "Memora helps me relive small moments I would’ve forgotten. The reminders on rainy days are my favorite.",
+      "Memora giúp tôi sống lại những khoảnh khắc nhỏ tôi có thể đã quên. Những lời nhắc vào ngày mưa là tôi thích nhất.",
     name: "An Nguyen",
-    title: "Travel creator",
+    title: "Nhà sáng tạo du lịch",
     rating: 4,
   },
   {
     quote:
-      "I love how rooms keep photos and notes together. It feels like a cozy place for my memories.",
+      "Tôi thích cách các phòng giữ ảnh và ghi chú cùng nhau. Nó giống như một nơi ấm áp cho ký ức của tôi.",
     name: "Chau Le",
-    title: "Designer",
+    title: "Nhà thiết kế",
     rating: 5,
   },
   {
     quote:
-      "Simple, private, and beautifully organized. Finding a memory now takes seconds.",
+      "Đơn giản, riêng tư và được sắp xếp đẹp. Giờ tìm lại một kỷ niệm chỉ mất vài giây.",
     name: "Thao Nguyen",
-    title: "Photographer",
+    title: "Nhiếp ảnh gia",
     rating: 5,
   },
   {
     quote:
-      "The ‘On this day’ resurfacing is perfect. It brings back the right moment at the right time.",
+      "Tính năng ‘Vào ngày này’ thật hoàn hảo. Nó mang lại đúng khoảnh khắc vào đúng thời điểm.",
     name: "Mai Tran",
-    title: "Journaler",
+    title: "Người viết nhật ký",
     rating: 4,
   },
   {
     quote:
-      "I shared a public room with friends—everyone could react and add notes. It’s wholesome.",
+      "Tôi chia sẻ một phòng công khai với bạn bè — mọi người đều có thể thả cảm xúc và thêm ghi chú. Rất ấm áp.",
     name: "Duy Anh",
-    title: "Community lead",
+    title: "Trưởng cộng đồng",
     rating: 5,
   },
   {
     quote:
-      "Memora’s privacy controls are clear and reassuring. I decide who sees what.",
+      "Các điều khiển quyền riêng tư của Memora rõ ràng và đáng tin. Tôi quyết định ai được thấy điều gì.",
     name: "Mai Anh",
-    title: "Product manager",
+    title: "Quản lý sản phẩm",
     rating: 5,
   },
 ];
@@ -128,7 +128,7 @@ function FeedbackRow({
                   <Quote className="w-5 h-5 text-black" />
                 </div>
                 <p
-                  className={`${kumbhSans.className} text-black text-base sm:text-lg leading-6 sm:leading-7`}
+                  className={`${gotu.className} text-black text-base sm:text-md leading-6 sm:leading-7`}
                 >
                   “{fb.quote}”
                 </p>
@@ -143,7 +143,7 @@ function FeedbackRow({
                       {fb.name}
                     </div>
                     <div
-                      className={`${kumbhSans.className} text-black/50 text-xs sm:text-sm`}
+                      className={`${gotu.className} text-black/50 text-xxs sm:text-xs`}
                     >
                       {fb.title}
                     </div>
@@ -170,7 +170,7 @@ function FeedbackRow({
                   <Quote className="w-5 h-5 text-black" />
                 </div>
                 <p
-                  className={`${kumbhSans.className} text-black text-base sm:text-lg leading-6 sm:leading-7`}
+                  className={`${gotu.className} text-black text-base sm:text-md leading-6 sm:leading-7`}
                 >
                   “{fb.quote}”
                 </p>
@@ -185,7 +185,7 @@ function FeedbackRow({
                       {fb.name}
                     </div>
                     <div
-                      className={`${kumbhSans.className} text-black/50 text-xs sm:text-sm`}
+                      className={`${gotu.className} text-black/50 text-xxs sm:text-xs`}
                     >
                       {fb.title}
                     </div>
@@ -222,20 +222,20 @@ export const GallerySection = (): React.JSX.Element => {
       {/* Heading */}
       <div className="flex flex-col w-full max-w-[92vw] lg:max-w-[1100px] items-center gap-3 sm:gap-5">
         <p
-          className={`${kumbhSans.className} uppercase tracking-[0.25em] text-xl text-rose-500 !font-bold`}
+          className={`${montserrat.className} uppercase tracking-[0.25em] text-xl text-rose-500`}
         >
-          Testimonial
+          Cảm nhận
         </p>
 
         <h1
-          className={`${gravitasOne.className}
+          className={`${taviraj.className}
         relative z-10 tracking-normal
-        text-[60px] font-bold text-white
+        text-[80px] font-bold text-white
         drop-shadow-[0_8px_24px_rgba(255,255,255,0.28)]
         text-center
       `}
         >
-          What our users say
+          NGƯỜI DÙNG NÓI GÌ
           {/* Halo 1 */}
           <span
             aria-hidden
@@ -251,11 +251,11 @@ export const GallerySection = (): React.JSX.Element => {
                    bg-[conic-gradient(from_200deg_at_50%_50%,#f0abfc_0deg,#93c5fd_120deg,#fbcfe8_240deg,#f0abfc_360deg)]"
           />
           <p
-            className={`${poiretOne.className} text-center text-black/70 mt-2 sm:mt-3
-                  !text-xl sm:text-base !font-bold leading-4 sm:leading-5 max-w-[75ch]`}
+            className={`${gotu.className} text-center text-black/70 mt-1 sm:mt-2
+                  !text-xl sm:text-base leading-4 sm:leading-5 max-w-[100ch]`}
           >
-            Real stories from people who made a room for their memories.
-            Private, gentle, and always there when it matters.
+            Câu chuyện thật từ những người đã tạo “phòng” cho ký ức của họ.
+            Riêng tư, dịu dàng và luôn hiện diện khi cần.
           </p>
         </h1>
       </div>

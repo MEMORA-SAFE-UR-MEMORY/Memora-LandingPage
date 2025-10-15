@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { gravitasOne, kumbhSans } from "@/fonts/font";
+import { gotu, gravitasOne, kumbhSans, taviraj } from "@/fonts/font";
 import Phone4 from "@/public/images/ip4.svg";
 import AppStore from "@/public/icons/download.svg";
 import CornerGlowFrame from "../animations/CornerGlowFrame";
@@ -63,16 +63,18 @@ export default function CtaDownload() {
               {/* RIGHT COPY */}
               <div className="relative z-10">
                 <h2
-                  className={`${gravitasOne.className} text-3xl sm:text-4xl lg:text-[40px] leading-tight`}
+                  className={`${taviraj.className} text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight`}
                 >
-                  Ready To Get Started?
+                  Sẵn sàng
+                  <br /> bắt đầu?
                 </h2>
                 <p
-                  className={`${kumbhSans.className} mt-3 text-white/70 max-w-[42ch]`}
+                  className={`${gotu.className} mt-3 text-white/70 max-w-[42ch]`}
                 >
-                  Keep trips, milestones, and everyday moments in one calm,
-                  private space. Organize by people & places, and let the right
-                  memories resurface when it matters.
+                  Giữ mọi chuyến đi, cột mốc và khoảnh khắc thường nhật trong
+                  một không gian riêng tư, tĩnh lặng. Sắp xếp theo người & địa
+                  điểm, và để những ký ức phù hợp được gợi lại đúng lúc quan
+                  trọng.
                 </p>
 
                 <button>
@@ -81,7 +83,7 @@ export default function CtaDownload() {
                     alt="download"
                     width={200}
                     height={200}
-                    className="mt-4"
+                    className="mt-6"
                   />
                 </button>
               </div>

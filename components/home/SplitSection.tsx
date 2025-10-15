@@ -4,7 +4,14 @@ import Image from "next/image";
 import Phone1 from "../../public/images/ip1.svg";
 import AppStore from "../../public/icons/AppStore.svg";
 import StarSvg from "../../public/icons/star.svg";
-import { gravitasOne, kumbhSans, poiretOne } from "@/fonts/font";
+import {
+  gotu,
+  gravitasOne,
+  kumbhSans,
+  montserrat,
+  poiretOne,
+  taviraj,
+} from "@/fonts/font";
 import StarField from "../animations/StarField";
 
 export default function SplitSection() {
@@ -48,11 +55,11 @@ export default function SplitSection() {
         {/* RIGHT */}
         <div className="relative mx-4">
           <h1
-            className={`${gravitasOne.className} relative z-10 font-extrabold text-[52px] sm:text-[56px] leading-[1.05] tracking-tight text-white`}
+            className={`${taviraj.className} relative z-10 font-extrabold text-[60px] sm:text-[64px] leading-[1.2] tracking-tight text-white`}
           >
-            Your{" "}
+            Căn phòng{" "}
             <span className="relative inline-block">
-              Memory Room
+              Ký ức của bạn
               {/* pink glow behind the key phrase */}
               <span
                 aria-hidden
@@ -64,19 +71,20 @@ export default function SplitSection() {
           </h1>
 
           <p
-            className={`${poiretOne.className} mt-4 text-[22px] text-white max-w-xl relative z-10`}
+            className={`${gotu.className} mt-4 text-[18px] text-black max-w-xl relative z-10`}
           >
-            Capture moments, pin feelings, and organize memories by albums,
-            people, and places. Sync safely across devices with a privacy-first
-            design—turn every photo into a story inside your own room.
+            Ghi lại khoảnh khắc, ghim cảm xúc và sắp xếp kỷ niệm theo album, con
+            người và địa điểm. Đồng bộ an toàn trên mọi thiết bị với thiết kế ưu
+            tiên quyền riêng tư—biến mỗi bức ảnh thành một câu chuyện trong căn
+            phòng của riêng bạn
           </p>
 
           {/* ribbon + ticket nghiêng dưới */}
           <div className="mt-5 relative h-28">
             <h3
-              className={`${kumbhSans.className} relative font-extrabold text-[30px] leading-[1.05] tracking-tight text-white`}
+              className={`${montserrat.className} relative font-regular text-[30px] leading-[1.05] tracking-tight text-white`}
             >
-              DOWNLOAD APP NOW
+              TẢI APP NGAY
             </h3>
             <Image
               src={AppStore}

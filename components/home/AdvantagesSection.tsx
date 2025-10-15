@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Phone3 from "@/public/images/ip3.svg";
-import { gravitasOne, kumbhSans, poiretOne } from "@/fonts/font";
+import { gotu, montserrat, poiretOne, taviraj } from "@/fonts/font";
 import StarField from "../animations/StarField";
 import StarSvg from "@/public/icons/star.svg";
 
@@ -58,9 +58,9 @@ export default function AdvantagesSection() {
           >
             <div>
               <div
-                className={`${kumbhSans.className} text-[11px] !italic text-gray-800 -mt-0.5`}
+                className={`${taviraj.className} text-[11px] !italic text-gray-800 -mt-0.5`}
               >
-                From Team Memora
+                Từ nhóm Memora
               </div>
               <div
                 className={`${poiretOne.className} text-md font-bold text-black`}
@@ -74,25 +74,26 @@ export default function AdvantagesSection() {
         {/* RIGHT: copy */}
         <div className="max-w-xl">
           <p
-            className={`${kumbhSans.className} uppercase tracking-[0.25em] text-lg text-rose-500 mb-2`}
+            className={`${montserrat.className} uppercase tracking-[0.25em] text-lg text-rose-500 mb-2`}
           >
-            Advantages
+            Ưu điểm
           </p>
           <h2
-            className={`${gravitasOne.className} text-5xl sm:text-6xl leading-tight text-white mb-4`}
+            className={`${taviraj.className} text-6xl sm:text-7xl font-bold leading-tight text-white mb-4`}
           >
-            Why Choose Memora?
+            Tại sao chọn Memora?
           </h2>
 
           <p
-            className={`${poiretOne.className} text-gray-900 text-xl leading-relaxed`}
+            className={`${gotu.className} text-gray-900 text-lg leading-relaxed`}
           >
-            Memora is your <b>digital room</b> for every moment—photos, notes,
-            and feelings. It <b>auto-organizes by date, people, and places</b>,
-            then gently resurfaces memories on anniversaries, <i>On this day</i>
-            , or even on rainy days you once loved. You decide who can see what,
-            and when; <b>privacy comes first</b>. So the little things don’t get
-            left behind.
+            Memora là <b>căn phòng số</b> cho mọi khoảnh khắc—ảnh, ghi chú và
+            cảm xúc. Ứng dụng khẽ gợi lại kỷ niệm vào các dịp kỷ niệm, thậm chí
+            cả những ngày bạn từng lỡ bỏ quên. Bạn quyết định ai được xem điều
+            gì và khi nào; <b>quyền riêng tư luôn được đặt lên hàng đầu</b>.
+            <br />
+            <br />
+            <i>Hãy để những điều nhỏ bé không bị bỏ quên.</i>
           </p>
         </div>
       </div>
