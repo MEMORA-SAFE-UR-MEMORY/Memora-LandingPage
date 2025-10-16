@@ -75,7 +75,7 @@ export default function RootLayout({
           <main className="flex-1">
             <div
               className="mx-auto w-full
-                         max-w-[98vw] sm:max-w-[960px] md:max-w-[1280px]
+                         max-w-[100vw] sm:max-w-[960px] md:max-w-[1280px]
                          lg:max-w-[1440px] xl:max-w-[1660px] 2xl:max-w-[min(98vw,1920px)]"
             >
               {children}

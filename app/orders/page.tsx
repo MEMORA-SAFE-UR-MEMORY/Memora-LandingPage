@@ -141,7 +141,7 @@ export default function OrdersPage() {
                             </button>
                           ) : (
                             <span className="text-sm text-gray-400">
-                              Không cần thanh toán
+                              Đã thanh toán
                             </span>
                           )}
                           <button
