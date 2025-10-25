@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useMemo, useState } from "react";
+import { Fragment, useMemo, useState, useEffect } from "react";
 import { montserrat } from "@/fonts/font";
 import { useOrders } from "@/services/orders/hooks";
 import type { OrderListItem } from "@/services/orders/types";
@@ -13,6 +13,41 @@ export default function OrdersPage() {
   const { data, loading, error, refresh } = useOrders();
   const { create, loading: paying } = useCreatePaymentLink();
 
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+
+  // Try to read user id from access token or localStorage (client side only)
+  useEffect(() => {
+    const getIdFromToken = (): string | null => {
+      try {
+        if (typeof window === "undefined") return null;
+        const token = localStorage.getItem("accessToken");
+        if (token) {
+          const parts = token.split(".");
+          if (parts.length >= 2) {
+            const payload = parts[1];
+            // atob on base64url
+            const b64 = payload.replace(/-/g, "+").replace(/_/g, "/");
+            const json = JSON.parse(decodeURIComponent(escape(atob(b64))));
+            return json?.sub || json?.userId || json?.id || null;
+          }
+        }
+
+        // fallback: look for stored user object
+        const userJson =
+          localStorage.getItem("user") || localStorage.getItem("profile");
+        if (userJson) {
+          const u = JSON.parse(userJson);
+          return u?.id || u?.userId || null;
+        }
+      } catch {
+        // ignore parse errors
+      }
+      return null;
+    };
+
+    setCurrentUserId(getIdFromToken());
+  }, []);
+
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [payingId, setPayingId] = useState<string | null>(null);
   const [open, setOpen] = useState<Set<string>>(new Set());
@@ -23,9 +58,21 @@ export default function OrdersPage() {
   const rows: OrderListItem[] = useMemo(() => data ?? [], [data]);
 
   const filteredRows = useMemo(() => {
-    if (statusFilter === "all") return rows;
-    return rows.filter((order) => normalise(order.status) === statusFilter);
-  }, [rows, statusFilter]);
+    // first filter by logged-in user (if any)
+    const byUser = currentUserId
+      ? rows.filter(
+          (order) =>
+            // try common fields where user id could be stored
+            order.userId === currentUserId ||
+            order.userInfo?.id === currentUserId ||
+            String(order.userId) === String(currentUserId)
+        )
+      : rows;
+
+    // then filter by status
+    if (statusFilter === "all") return byUser;
+    return byUser.filter((order) => normalise(order.status) === statusFilter);
+  }, [rows, statusFilter, currentUserId]);
 
   const toggle = (id: string) =>
     setOpen((prev) => {
@@ -60,6 +107,12 @@ export default function OrdersPage() {
   return (
     <section className="py-6 sm:py-10">
       <div className="mx-auto w-full px-4 sm:px-6 lg:px-8 max-w-[98vw] sm:max-w-[960px] md:max-w-[1280px]">
+        {!currentUserId && (
+          <p className="mb-4 text-sm text-gray-600">
+            Vui lòng đăng nhập để xem đơn hàng của bạn.
+          </p>
+        )}
+
         <div className="mb-6 flex items-center justify-between gap-3">
           <StatusFilterDropdown
             value={statusFilter}
