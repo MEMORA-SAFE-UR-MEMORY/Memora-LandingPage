@@ -60,12 +60,12 @@ export default function OrdersPage() {
   const filteredRows = useMemo(() => {
     // first filter by logged-in user (if any)
     const byUser = currentUserId
-      ? rows.filter(
-          (order) =>
-            // try common fields where user id could be stored
-            order.userId === currentUserId ||
-            order.userInfo?.id === currentUserId ||
-            String(order.userId) === String(currentUserId)
+      ? rows.filter((order) =>
+          // use the userInfo.id field defined in OrderDetail
+          Boolean(
+            order.userInfo?.id &&
+              String(order.userInfo.id) === String(currentUserId)
+          )
         )
       : rows;
 
