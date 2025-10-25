@@ -13,8 +13,27 @@ export function useOrders() {
     setLoading(true);
     setError(null);
     try {
-      const list = await getOrders();
-      setData(list);
+      const listRaw = (await getOrders()) as unknown;
+
+      // type guards to avoid `any`
+      const isOrdersArray = (v: unknown): v is OrderListItem[] =>
+        Array.isArray(v);
+      const hasDataProp = (v: unknown): v is { data?: OrderListItem[] } =>
+        typeof v === "object" && v !== null && "data" in v;
+
+      let arr: OrderListItem[] = [];
+      if (isOrdersArray(listRaw)) {
+        arr = listRaw;
+      } else if (hasDataProp(listRaw)) {
+        arr = listRaw.data ?? [];
+      } else {
+        arr = [];
+      }
+
+      if (!Array.isArray(arr)) {
+        throw new Error("Invalid orders response");
+      }
+      setData(arr as OrderListItem[]);
     } catch (e) {
       setError((e as Error).message || "Fetch failed");
     } finally {

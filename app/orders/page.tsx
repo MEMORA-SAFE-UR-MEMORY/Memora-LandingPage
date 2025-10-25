@@ -318,7 +318,7 @@ export default function OrdersPage() {
                     colSpan={6}
                     className="px-4 py-6 text-center text-gray-500"
                   >
-                    Không có dữ liệu.
+                    Không có đơn hàng.
                   </td>
                 </tr>
               )}
