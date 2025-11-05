@@ -1,13 +1,16 @@
 "use client";
-import React from "react";
-import { gravitasOne, kumbhSans, montserrat, poiretOne } from "@/fonts/font";
+import React, { useState } from "react";
+import { gravitasOne, montserrat, poiretOne } from "@/fonts/font";
 import Image from "next/image";
 import PointIcon from "../../public/icons/point.svg";
 import WatchIcon from "../../public/icons/watch.svg";
 import CharDrop from "../animations/CharDrop";
 import DiamondSparkles from "../animations/DiamondSparkles";
+import VideoModal from "../shared/VideoModal";
 
 const HeroSection = () => {
+  const [open, setOpen] = useState(false);
+  const videoSrc = "https://www.youtube.com/watch?v=AOAhaIYCvHE";
   return (
     <section className="relative flex flex-col items-center justify-center min-h-screen text-center overflow-hidden pt-2 sm:pt-4">
       <DiamondSparkles className="-z-10" count={16} />
@@ -29,7 +32,10 @@ const HeroSection = () => {
           random
         />
         <div className="mt-8 sm:mt-10 w-full flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-center">
-          <button className="w-full sm:w-auto px-6 py-3 sm:py-4 rounded-md border border-transparent text-gray-600 hover:text-black hover:border-black transition flex items-center justify-center gap-2">
+          <button
+            onClick={() => setOpen(true)}
+            className="w-full sm:w-auto px-6 py-3 sm:py-4 rounded-md border border-transparent text-gray-600 hover:text-black hover:border-black transition flex items-center justify-center gap-2"
+          >
             <Image src={WatchIcon} alt="point_icon" width={24} height={24} />
             <span className={`${montserrat.className}`}>Watch Demo</span>
           </button>
@@ -40,6 +46,12 @@ const HeroSection = () => {
           </button>
         </div>
       </div>
+      <VideoModal
+        open={open}
+        onClose={() => setOpen(false)}
+        src={videoSrc}
+        title="Memora – Demo"
+      />
     </section>
   );
 };
