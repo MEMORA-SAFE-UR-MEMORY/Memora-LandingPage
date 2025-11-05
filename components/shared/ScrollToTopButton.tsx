@@ -36,9 +36,9 @@ export function ScrollToTopButton() {
         >
           <path
             fill="#d092e9"
-            fill-opacity="0"
-            stroke-dasharray="20"
-            stroke-dashoffset="20"
+            fillOpacity="0"
+            strokeDasharray="20"
+            strokeDashoffset="20"
             d="M12 15h2v-6h2.5l-4.5 -4.5M12 15h-2v-6h-2.5l4.5 -4.5"
           >
             <animate

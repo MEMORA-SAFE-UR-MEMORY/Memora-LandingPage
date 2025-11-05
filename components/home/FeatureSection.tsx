@@ -5,11 +5,137 @@ import Phone2 from "@/public/images/ip2.svg";
 import StarSvg from "@/public/icons/star.svg";
 import { gotu, montserrat, taviraj } from "@/fonts/font";
 import StarField from "../animations/StarField";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function FeatureSection() {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const phoneRef = useRef<HTMLDivElement | null>(null);
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // prepare states
+      gsap.set(phoneRef.current, {
+        autoAlpha: 0,
+        y: 40,
+        scale: 1.3,
+        rotate: -6,
+      });
+
+      const tl = gsap.timeline({
+        // chậm rãi, mượt hơn
+        defaults: { ease: "power2.out" },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          end: "bottom 40%",
+          once: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // text stack reveal (chậm hơn và từng phần một)
+      tl.from(".f-kicker", { y: 18, opacity: 0, duration: 0.6 }, 0)
+        .from(
+          ".f-word",
+          {
+            y: 30,
+            opacity: 0,
+            filter: "blur(6px)",
+            duration: 0.7,
+            stagger: 0.15,
+          },
+          0.05
+        )
+        // shimmer gradient chạy ngang chữ sau khi hiện
+        .to(
+          ".f-word",
+          {
+            backgroundPosition: "100% 0%",
+            duration: 1.2,
+            ease: "none",
+            stagger: 0.15,
+          },
+          "<"
+        )
+        .from(
+          ".feature-row",
+          { x: -26, opacity: 0, duration: 0.55, stagger: 0.2 },
+          0.15
+        );
+
+      // phone + rings come after
+      tl.to(
+        phoneRef.current,
+        { autoAlpha: 1, y: 0, scale: 1, rotate: 0, duration: 1.2 },
+        ">-0.05"
+      ).from(
+        ".f-ring",
+        {
+          scale: 0.85,
+          opacity: 0,
+          rotate: "+=8",
+          duration: 0.7,
+          stagger: 0.1,
+        },
+        "<+0.05"
+      );
+
+      // gentle parallax as you scroll further
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        onUpdate: (self) => {
+          const p = self.progress; // 0..1
+          gsap.to(phoneRef.current, {
+            y: 10 - p * 20, // slight up when progressing
+            rotate: -1 + p * 2,
+            duration: 0.2,
+            ease: "sine.out",
+          });
+        },
+      });
+
+      // micro hover tilt for phone
+      const container = phoneRef.current;
+      if (container) {
+        const onMove = (e: MouseEvent) => {
+          const rect = container.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const dx = (e.clientX - cx) / rect.width; // -0.5..0.5
+          const dy = (e.clientY - cy) / rect.height; // -0.5..0.5
+          gsap.to(container, {
+            rotateY: dx * 6,
+            rotateX: -dy * 6,
+            transformPerspective: 600,
+            transformOrigin: "center center",
+            duration: 0.25,
+          });
+        };
+        const onLeave = () =>
+          gsap.to(container, {
+            rotateX: 0,
+            rotateY: 0,
+            duration: 0.4,
+            ease: "power2.out",
+          });
+        container.addEventListener("mousemove", onMove);
+        container.addEventListener("mouseleave", onLeave);
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
   return (
     <section
       id="feature"
+      ref={sectionRef}
       className="max-w-auto relative pt-6 lg:pt-14 pb-10 lg:pb-18 overflow-hidden overflow-x-hidden"
     >
       {/* edge glows like the reference */}
@@ -20,14 +146,27 @@ export default function FeatureSection() {
         {/* RIGHT: copy + list */}
         <div>
           <p
-            className={`${montserrat.className} uppercase tracking-[0.25em] text-lg text-black mb-4`}
+            className={`f-kicker ${montserrat.className} uppercase tracking-[0.25em] text-lg text-black mb-4`}
           >
             Tính năng
           </p>
           <h2
+            ref={headingRef}
             className={`${taviraj.className} text-6xl sm:text-7xl font-bold leading-tight text-white mb-6`}
           >
-            Chế độ <br /> Khám phá
+            <span
+              className="f-word bg-clip-text text-transparent bg-white bg-[length:200%_100%]"
+              style={{ backgroundPosition: "0% 0%" }}
+            >
+              Chế độ
+            </span>
+            <br />
+            <span
+              className="f-word bg-clip-text text-transparent bg-white  bg-[length:200%_100%]"
+              style={{ backgroundPosition: "0% 0%" }}
+            >
+              Khám phá
+            </span>
           </h2>
 
           <div className={`${gotu.className} space-y-8`}>
@@ -49,11 +188,11 @@ export default function FeatureSection() {
           </div>
         </div>
 
-        <div className="relative h-[560px] sm:h-[600px]">
+        <div className="relative h-[620px] sm:h-[700px]">
           {/* concentric ellipse rings */}
-          <div className="absolute top-20 h-[420px] w-[520px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[-8deg]" />
-          <div className="absolute left-8 top-26 h-[420px] w-[520px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[-8deg] translate-x-6" />
-          <div className="absolute left-14 top-32 h-[420px] w-[520px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[-8deg] translate-x-12" />
+          <div className="f-ring absolute top-20 h-[420px] w-[520px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[-8deg]" />
+          <div className="f-ring absolute left-8 top-26 h-[420px] w-[520px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[-8deg] translate-x-6" />
+          <div className="f-ring absolute left-14 top-32 h-[420px] w-[520px] rounded-[50%_45%_45%_50%/50%] border border-white rotate-[-8deg] translate-x-12" />
 
           {/* red glow behind the phone */}
           <span className="absolute left-20 top-40 -z-10 w-[420px] h-[260px] rounded-full blur-[110px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_50%_40%,#ffc3b0_0%,#ff5a4e_40%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
@@ -68,17 +207,17 @@ export default function FeatureSection() {
             maxDur={18}
           />
           {/* the phone */}
-          <Image
-            src={Phone2}
-            alt="phone"
-            priority
-            className="
-    absolute top-[25%] drop-shadow-2xl h-auto
-    w-[360px] sm:w-[380px] lg:w-[420px] xl:w-[460px]
-    origin-top-left transform-gpu transition-transform
-    scale-[1.25] sm:scale-[1.3] lg:scale-[1.4] xl:scale-[1.5]
-  "
-          />
+          <div
+            ref={phoneRef}
+            className="absolute top-[18%] left-0 will-change-transform transform-gpu"
+          >
+            <Image
+              src={Phone2}
+              alt="phone"
+              priority
+              className="drop-shadow-2xl h-auto  w-[360px] sm:w-[380px] lg:w-[420px] xl:w-[460px] origin-top-left transition-transform  scale-[1.25] sm:scale-[1.3] lg:scale-[1.4] xl:scale-[1.5]"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -147,7 +286,7 @@ function FeatureRow({
   desc: string;
 }) {
   return (
-    <div className="flex items-start gap-4">
+    <div className="feature-row flex items-start gap-4">
       <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-full ring-1 ring-rose-200">
         {icon}
       </div>
