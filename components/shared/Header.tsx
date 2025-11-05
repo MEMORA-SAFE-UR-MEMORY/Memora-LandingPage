@@ -86,6 +86,13 @@ export default function Header() {
             Tính năng
           </Link>
           <Link
+            href="/#qr"
+            onClick={(event) => handleSectionClick(event, "qr")}
+            className="text-black hover:opacity-80"
+          >
+            QR Code APK
+          </Link>
+          <Link
             href="/#about"
             onClick={(event) => handleSectionClick(event, "about")}
             className="text-black hover:opacity-80"

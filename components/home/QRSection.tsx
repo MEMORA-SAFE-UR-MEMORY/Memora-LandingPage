@@ -7,7 +7,10 @@ import StarSvg from "../../public/icons/star.svg";
 
 export default function QRSection() {
   return (
-    <section className="relative pt-2 lg:pt-4 pb-2 lg:pb-4 overflow-hidden">
+    <section
+      id="qr"
+      className="relative pt-2 lg:pt-4 pb-2 lg:pb-4 overflow-hidden"
+    >
       {/* edge glows to match other sections */}
       <span className="pointer-events-none absolute left-[-80px] top-[220px] -z-10 h-[200px] w-[520px] rounded-full blur-[120px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_40%_40%,#ffc3b0_0%,#ff5a4e_40%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
       <span className="pointer-events-none absolute right-[-60px] bottom-[160px] -z-10 h-[200px] w-[520px] rounded-full blur-[120px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_60%_60%,#ffe7b0_0%,#ff5a4e_38%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
