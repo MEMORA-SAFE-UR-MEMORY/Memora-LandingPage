@@ -1,6 +1,7 @@
 import AdvantagesSection from "@/components/home/AdvantagesSection";
 import CtaDownload from "@/components/home/CtaDownload";
 import FeatureSection from "@/components/home/FeatureSection";
+import QRSection from "@/components/home/QRSection";
 import { GallerySection } from "@/components/home/GallerySection";
 import HeroSection from "@/components/home/HeroSection";
 import SplitSection from "@/components/home/SplitSection";
@@ -13,6 +14,7 @@ export default function LandingPage() {
       <SplitSection />
       <FeatureSection />
       <AdvantagesSection />
+      <QRSection />
       <TeamSaySection />
       <GallerySection />
       <CtaDownload />
