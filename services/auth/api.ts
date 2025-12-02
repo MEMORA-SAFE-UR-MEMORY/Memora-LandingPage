@@ -21,7 +21,9 @@ async function postJson<TRes, TBody = unknown>(
   body: TBody,
   init?: RequestInit
 ): Promise<TRes> {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const url = `${API_BASE}${path}`;
+
+  const res = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -33,20 +35,31 @@ async function postJson<TRes, TBody = unknown>(
   });
 
   let data: unknown = null;
+  let rawText = "";
+
   try {
-    data = await res.json(); // chỉ parse JSON
+    rawText = await res.text();
+    data = JSON.parse(rawText);
   } catch {
-    data = null; // không có JSON body
+    // Nếu không parse được JSON, dùng plain text làm message
+    data = rawText || null;
   }
 
   if (!res.ok) {
-    const fallback = res.statusText || "Request failed";
+    const fallback = "Yêu cầu thất bại";
     let message = fallback;
 
-    if (isRecord(data)) {
+    // Nếu response là plain text string
+    if (typeof data === "string" && data.trim()) {
+      message = data.trim();
+    } else if (isRecord(data)) {
+      // Nếu là JSON object, thử các field phổ biến
       message =
         getStringProp(data, "message") ??
         getStringProp(data, "error") ??
+        getStringProp(data, "Message") ??
+        getStringProp(data, "Error") ??
+        getStringProp(data, "title") ??
         fallback;
     }
 

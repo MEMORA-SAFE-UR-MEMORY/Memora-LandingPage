@@ -21,13 +21,6 @@ export default function LoginPage() {
     search,
   } = useOrderStatus();
 
-  useEffect(() => {
-    if (error) toast.error(error);
-  }, [error]);
-  useEffect(() => {
-    if (searchError) toast.error(searchError);
-  }, [searchError]);
-
   const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
