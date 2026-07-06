@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-// import Link from "next/link";
 import { montserrat } from "@/fonts/font";
 import { CircleHelp } from "lucide-react";
 import { useLogin } from "@/services/auth/hooks";
