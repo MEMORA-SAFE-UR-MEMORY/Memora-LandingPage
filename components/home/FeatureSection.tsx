@@ -84,50 +84,6 @@ export default function FeatureSection() {
         },
         "<+0.05"
       );
-
-      // gentle parallax as you scroll further
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        onUpdate: (self) => {
-          const p = self.progress; // 0..1
-          gsap.to(phoneRef.current, {
-            y: 10 - p * 20, // slight up when progressing
-            rotate: -1 + p * 2,
-            duration: 0.2,
-            ease: "sine.out",
-          });
-        },
-      });
-
-      // micro hover tilt for phone
-      const container = phoneRef.current;
-      if (container) {
-        const onMove = (e: MouseEvent) => {
-          const rect = container.getBoundingClientRect();
-          const cx = rect.left + rect.width / 2;
-          const cy = rect.top + rect.height / 2;
-          const dx = (e.clientX - cx) / rect.width; // -0.5..0.5
-          const dy = (e.clientY - cy) / rect.height; // -0.5..0.5
-          gsap.to(container, {
-            rotateY: dx * 6,
-            rotateX: -dy * 6,
-            transformPerspective: 600,
-            transformOrigin: "center center",
-            duration: 0.25,
-          });
-        };
-        const onLeave = () =>
-          gsap.to(container, {
-            rotateX: 0,
-            rotateY: 0,
-            duration: 0.4,
-            ease: "power2.out",
-          });
-        container.addEventListener("mousemove", onMove);
-        container.addEventListener("mouseleave", onLeave);
-      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -198,7 +154,7 @@ export default function FeatureSection() {
           <span className="absolute left-20 top-40 -z-10 w-[420px] h-[260px] rounded-full blur-[110px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_50%_40%,#ffc3b0_0%,#ff5a4e_40%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
           <StarField
             src={StarSvg}
-            count={36}
+            count={12}
             seed={42}
             className="-z-10"
             minSize={12}

@@ -39,7 +39,7 @@ export default function BadgeAvatar({
       title={name || alt}
       onClick={() => onSelect?.(name || alt)}
       className={[
-        "rounded-full overflow-hidden ring-1 ring-black/10 shadow-md bg-white/40 backdrop-blur",
+        "rounded-full overflow-hidden ring-1 ring-black/10 shadow-md bg-white/40",
         "flex items-center justify-center cursor-pointer select-none",
         float ? "ba-bob" : "",
         className,
@@ -81,7 +81,6 @@ export default function BadgeAvatar({
         .ba-bob {
           animation: ba-bob var(--dur, 7s) ease-in-out var(--delay, 0s) infinite;
           transform-origin: 50% 45%;
-          will-change: transform;
         }
         .ba-bob:hover {
           animation-duration: calc(var(--dur, 7s) * 0.8);

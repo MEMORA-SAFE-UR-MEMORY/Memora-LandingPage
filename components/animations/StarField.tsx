@@ -1,19 +1,18 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 import React, { useMemo } from "react";
 
 type StarFieldProps = {
   src: StaticImageData | string;
   count?: number;
-  className?: string; // wrapper (thường absolute inset-0 -z-10)
-  seed?: number; // để cố định ngẫu nhiên nếu muốn
-  minSize?: number; // px
-  maxSize?: number; // px
-  minDur?: number; // s
-  maxDur?: number; // s
+  className?: string;
+  seed?: number;
+  minSize?: number;
+  maxSize?: number;
+  minDur?: number;
+  maxDur?: number;
 };
 
-// CSS custom properties for star animation
 type CSSVars = React.CSSProperties & {
   ["--dur"]?: string;
   ["--delay"]?: string;
@@ -30,9 +29,15 @@ function mulberry32(a: number) {
   };
 }
 
+/** Resolve src to a URL string for use as CSS background-image */
+function resolveSrc(src: StaticImageData | string): string {
+  if (typeof src === "string") return src;
+  return src.src; // StaticImageData has a .src string property
+}
+
 export default function StarField({
   src,
-  count = 12,
+  count = 10,
   className = "",
   seed,
   minSize = 18,
@@ -40,6 +45,8 @@ export default function StarField({
   minDur = 6,
   maxDur = 14,
 }: StarFieldProps) {
+  const srcUrl = useMemo(() => resolveSrc(src), [src]);
+
   const rng: () => number = useMemo(
     () => (seed != null ? mulberry32(seed) : Math.random),
     [seed]
@@ -48,12 +55,12 @@ export default function StarField({
   const stars = useMemo(
     () =>
       Array.from({ length: count }).map((_, i) => {
-        const left = Math.round(rng() * 100); // %
-        const top = Math.round(rng() * 100); // %
+        const left = Math.round(rng() * 100);
+        const top = Math.round(rng() * 100);
         const size = Math.round(minSize + (maxSize - minSize) * rng());
         const dur = +(minDur + (maxDur - minDur) * rng()).toFixed(2);
         const delay = +(rng() * 5).toFixed(2);
-        const angle = Math.round(rng() * 360); // góc ban đầu
+        const angle = Math.round(rng() * 360);
         const s0 = +(0.82 + rng() * 0.12).toFixed(2);
         const s1 = +(1.06 + rng() * 0.18).toFixed(2);
         return { key: `star-${i}`, left, top, size, dur, delay, angle, s0, s1 };
@@ -64,34 +71,30 @@ export default function StarField({
   return (
     <div
       className={`absolute inset-0 pointer-events-none ${className}`}
+      style={{ contain: "layout style" }}
       aria-hidden
     >
       {stars.map((s) => (
         <div
           key={s.key}
-          className="absolute"
-          style={{
-            left: `${s.left}%`,
-            top: `${s.top}%`,
-            transform: `rotate(${s.angle}deg)`,
-          }}
-        >
-          <Image
-            src={src}
-            alt="star"
-            width={s.size}
-            height={s.size}
-            className="star-spin star-glow"
-            style={
-              {
-                "--dur": `${s.dur}s`,
-                "--delay": `${s.delay}s`,
-                "--s0": s.s0,
-                "--s1": s.s1,
-              } as CSSVars
-            }
-          />
-        </div>
+          className="absolute star-spin"
+          style={
+            {
+              left: `${s.left}%`,
+              top: `${s.top}%`,
+              width: s.size,
+              height: s.size,
+              backgroundImage: `url(${srcUrl})`,
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              transform: `rotate(${s.angle}deg)`,
+              "--dur": `${s.dur}s`,
+              "--delay": `${s.delay}s`,
+              "--s0": s.s0,
+              "--s1": s.s1,
+            } as CSSVars
+          }
+        />
       ))}
     </div>
   );

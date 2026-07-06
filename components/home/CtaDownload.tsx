@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { gotu, gravitasOne, kumbhSans, taviraj } from "@/fonts/font";
 import Phone4 from "@/public/images/ip4.svg";
-import AppStore from "@/public/icons/download.svg";
+import GooglePlay from "@/public/icons/GooglePlay.svg";
 import CornerGlowFrame from "../animations/CornerGlowFrame";
 
 export default function CtaDownload() {
@@ -77,15 +77,20 @@ export default function CtaDownload() {
                   trọng.
                 </p>
 
-                <button>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.anhtdse184525.Memora&hl=vi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block transition-transform hover:scale-105 active:scale-95"
+                >
                   <Image
-                    src={AppStore}
-                    alt="download"
+                    src={GooglePlay}
+                    alt="Tải Memora trên Google Play"
                     width={200}
                     height={200}
                     className="mt-6"
                   />
-                </button>
+                </a>
               </div>
             </div>
           </div>

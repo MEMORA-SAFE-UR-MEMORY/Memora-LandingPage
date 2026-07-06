@@ -70,20 +70,6 @@ export default function SplitSection() {
         "<+0.05"
       );
 
-      // Subtle floating effect after reveal
-      tl.add(() => {
-        if (phoneRef.current) {
-          gsap.to(phoneRef.current, {
-            y: "+=10",
-            rotate: "+=1.5",
-            duration: 3.2,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-          });
-        }
-      });
-
       // Hover interaction for headline
       const el = headlineRef.current;
       if (el) {
@@ -142,7 +128,7 @@ export default function SplitSection() {
           {/* vòng tròn outline */}
           <StarField
             src={StarSvg}
-            count={36}
+            count={12}
             seed={42}
             className="-z-10"
             minSize={12}

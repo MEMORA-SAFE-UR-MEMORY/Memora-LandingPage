@@ -14,7 +14,6 @@ export default function LandingPage() {
       <SplitSection />
       <FeatureSection />
       <AdvantagesSection />
-      <QRSection />
       <TeamSaySection />
       <GallerySection />
       <CtaDownload />

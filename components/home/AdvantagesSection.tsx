@@ -99,22 +99,6 @@ export default function AdvantagesSection() {
           "<+0.05"
         )
         .from(".adv-glow", { scale: 0.92, opacity: 0.4, duration: 0.6 }, "<");
-
-      // subtle scrub parallax for the floating card
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        onUpdate: (self) => {
-          const p = self.progress;
-          gsap.to(cardRef.current, {
-            y: -6 + p * 12,
-            rotate: -2 + p * 4,
-            duration: 0.2,
-            ease: "sine.out",
-          });
-        },
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -140,7 +124,7 @@ export default function AdvantagesSection() {
           <span className="adv-glow absolute right-24 top-40 -z-10 w-[420px] h-[260px] rounded-full blur-[110px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_50%_40%,#ffd4b8_0%,#ff5a4e_40%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
           <StarField
             src={StarSvg}
-            count={36}
+            count={12}
             seed={42}
             className="-z-10"
             minSize={12}

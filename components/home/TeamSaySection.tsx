@@ -59,7 +59,7 @@ export default function TeamSaySection() {
 
           <StarField
             src={StarSvg}
-            count={28}
+            count={10}
             seed={42}
             className="-z-10"
             minSize={10}
@@ -162,7 +162,7 @@ export default function TeamSaySection() {
           <span className="absolute left-16 top-24 -z-10 w-[420px] h-[260px] rounded-full blur-[110px] opacity-90 mix-blend-multiply bg-[radial-gradient(60%_60%_at_50%_40%,#ffc3b0_0%,#ff5a4e_40%,rgba(255,90,78,0.28)_66%,transparent_80%)]" />
           <StarField
             src={StarSvg}
-            count={36}
+            count={12}
             seed={42}
             className="-z-10"
             minSize={12}

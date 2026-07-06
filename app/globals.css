@@ -164,7 +164,6 @@
   opacity: 0;
   animation: charDrop var(--dur, 1.4s) cubic-bezier(0, 0, 0.2, 1) both;
   animation-delay: var(--delay, 0s);
-  will-change: transform, opacity, filter;
 }
 @media (prefers-reduced-motion: reduce) {
   .char-drop {
@@ -180,22 +179,18 @@
   0% {
     opacity: 0;
     transform: translateY(0);
-    filter: blur(4px);
   }
   40% {
     opacity: 1;
     transform: translateY(-6px);
-    filter: blur(0);
   }
   70% {
     opacity: 0.75;
     transform: translateY(-3px);
-    filter: blur(0.6px);
   }
   100% {
     opacity: 0;
     transform: translateY(0);
-    filter: blur(4px);
   }
 }
 @keyframes diamondFloat {
@@ -215,17 +210,16 @@
   position: absolute;
   width: var(--size, 14px);
   height: var(--size, 14px);
-  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); /* hình thoi */
-  background: var(--fill, #ffffff); /* <<< trắng */
-  border: 1px solid var(--border, rgba(0, 0, 0, 0.2)); /* viền hơi xám để nổi trên nền sáng */
-  box-shadow: 0 0 12px var(--glow1, rgba(255, 255, 255, 0.85)),
-    0 0 24px var(--glow2, rgba(255, 255, 255, 0.55)); /* glow trắng */
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  background: var(--fill, #ffffff);
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.2));
+  box-shadow: 0 0 8px var(--glow1, rgba(255, 255, 255, 0.6));
   opacity: 0;
   pointer-events: none;
+  contain: layout style;
   animation: diamondTwinkle var(--dur, 2.6s) ease-in-out var(--delay, 0s)
       infinite,
     diamondFloat var(--floatDur, 7s) ease-in-out var(--delay, 0s) infinite;
-  will-change: transform, opacity, filter;
 }
 
 .diamond.sm {
@@ -273,12 +267,13 @@
 .star-spin {
   animation: starSpinPulse var(--dur, 10s) ease-in-out var(--delay, 0s) infinite;
   transform-origin: 50% 50%;
-  will-change: transform, filter;
+  contain: layout style;
 }
 
-.star-glow {
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.85))
-    drop-shadow(0 0 14px rgba(255, 255, 255, 0.35));
+@media (prefers-reduced-motion: reduce) {
+  .star-spin {
+    animation: none !important;
+  }
 }
 
 /* === Corner Glow Frame =================================== */

@@ -43,7 +43,7 @@ export default function CharDrop({
   delayStep = 0.1,
   duration = 1.4,
   random = true,
-  seed,
+  seed = 42,
 }: Props) {
   const orderMap = useMemo(() => {
     // Lấy index của các ký tự KHÔNG phải khoảng trắng

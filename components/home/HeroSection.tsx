@@ -13,7 +13,7 @@ const HeroSection = () => {
   const videoSrc = "https://www.youtube.com/watch?v=AOAhaIYCvHE";
   return (
     <section className="relative flex flex-col items-center justify-center min-h-screen text-center overflow-hidden pt-2 sm:pt-4">
-      <DiamondSparkles className="-z-10" count={16} />
+      <DiamondSparkles className="-z-10" count={8} />
 
       {/* Content */}
       <div className="max-w-[92vw] sm:max-w-2xl flex flex-col items-center justify-center px-4">

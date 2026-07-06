@@ -66,7 +66,7 @@ export default function RootLayout({
             style={{ backgroundImage: "url(/images/bg.png)", contain: "paint" }}
           />
           <div
-            className="absolute inset-0 animate-gradient bg-gradient-to-r
+            className="absolute inset-0 bg-gradient-to-r
                        from-purple-200/60 via-pink-200/60 to-blue-200/60"
           />
         </div>

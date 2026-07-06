@@ -38,7 +38,7 @@ export default function DiamondSparkles({
     "linear-gradient(135deg,#fff 0%, rgba(200,220,255,0.28) 60%)",
     "linear-gradient(135deg,#fff 0%, rgba(255,240,200,0.28) 60%)",
   ],
-  seed,
+  seed = 7,
   sizes = ["small", "md", "md", "lg"],
 }: DiamondProps) {
   const arr = useMemo(() => {

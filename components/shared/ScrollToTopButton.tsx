@@ -30,9 +30,9 @@ export function ScrollToTopButton() {
         <g
           fill="none"
           stroke="#d092e9"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
         >
           <path
             fill="#d092e9"
@@ -62,7 +62,7 @@ export function ScrollToTopButton() {
               values="20;0"
             />
           </path>
-          <path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12">
+          <path strokeDasharray="14" strokeDashoffset="14" d="M6 19h12">
             <animate
               fill="freeze"
               attributeName="stroke-dashoffset"

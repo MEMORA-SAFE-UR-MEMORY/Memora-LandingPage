@@ -35,7 +35,7 @@ export function Star({
       alt="star"
       width={size}
       height={size}
-      className={`star-spin star-glow ${className}`}
+      className={`star-spin ${className}`}
       style={
         {
           "--dur": `${dur}s`,
