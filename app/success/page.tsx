@@ -1,12 +1,13 @@
 import { redirect } from "next/navigation";
 
-export default function SuccessRedirect({
+export default async function SuccessRedirect({
   searchParams,
 }: {
-  searchParams: Record<string, string | string[] | undefined>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  const resolved = await searchParams;
   const sp = new URLSearchParams();
-  for (const [k, v] of Object.entries(searchParams)) {
+  for (const [k, v] of Object.entries(resolved)) {
     if (Array.isArray(v)) v.forEach((x) => sp.append(k, x));
     else if (typeof v === "string") sp.set(k, v);
   }

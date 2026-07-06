@@ -3,10 +3,8 @@
 import {
   fahkwang,
   gotu,
-  gravitasOne,
   kumbhSans,
   montserrat,
-  poiretOne,
   taviraj,
 } from "@/fonts/font";
 import StarSvg from "@/public/icons/star.svg";
