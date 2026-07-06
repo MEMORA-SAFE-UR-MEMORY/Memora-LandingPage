@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { gotu, gravitasOne, kumbhSans, taviraj } from "@/fonts/font";
+import { gotu, taviraj } from "@/fonts/font";
 import Phone4 from "@/public/images/ip4.svg";
 import GooglePlay from "@/public/icons/GooglePlay.svg";
 import CornerGlowFrame from "../animations/CornerGlowFrame";
