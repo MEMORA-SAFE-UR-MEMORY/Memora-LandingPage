@@ -4,13 +4,12 @@ const API_BASE = (
   process.env.NEXT_PUBLIC_API_URL ?? "https://memora.somee.com"
 ).replace(/\/$/, "");
 
-// helpers — tránh dùng any
 function isRecord(v: unknown): v is Record<string, unknown> {
   return typeof v === "object" && v !== null;
 }
 function getStringProp(
   obj: Record<string, unknown>,
-  key: string
+  key: string,
 ): string | undefined {
   const v = obj[key];
   return typeof v === "string" ? v : undefined;
@@ -19,7 +18,7 @@ function getStringProp(
 async function postJson<TRes, TBody = unknown>(
   path: string,
   body: TBody,
-  init?: RequestInit
+  init?: RequestInit,
 ): Promise<TRes> {
   const url = `${API_BASE}${path}`;
 
